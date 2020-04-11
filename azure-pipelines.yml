@@ -16,17 +16,18 @@ steps:
   displayName: 'Install Node.js'
 
 
-- script: |
-    npm install -g @angular/cli
-    npm install
-    ng build --prod
-  displayName: 'npm install and build'
+- script: npm install
+  displayName: 'Install dependencies'
+
+- script: npx ng build --prod
+  displayName: 'Build'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '.'
-    ArtifactName: 'app'
+    PathtoPublish: 'dist/ng-azure-devops'
+    ArtifactName: 'web-app'
     publishLocation: 'Container'
+  displayName: 'Publish Artifacts'
 
 - task: AzureRmWebAppDeployment@4
   inputs:
