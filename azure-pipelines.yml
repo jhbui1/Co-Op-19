@@ -22,21 +22,13 @@ steps:
 - script: npx ng build --prod
   displayName: 'Build'
 
-- task: Artifacts-Compress@2
-  inputs:
-    source: '$(Build.ArtifactStagingDirectory)'
-    dest: '$(Build.ArtifactStagingDirectory)'
-    compressionLevel: 'Fastest'
-    multiplePackages: true
-    cleanDest: false
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '.'
-    ArtifactName: 'web-app'
-    publishLocation: 'Container'
-  displayName: 'Publish Artifacts'
 
+- task: PublishPipelineArtifact@0
+  displayName: 'Publish pipeline artifact'
+  inputs:
+    artifactName: 'new'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
