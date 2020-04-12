@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "co-op19"
+    }
+  },
+  "defaultProject": "co-op19",
+  "cli": {
+    "analytics": false
+  }
 }
