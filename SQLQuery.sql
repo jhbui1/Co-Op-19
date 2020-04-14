@@ -20,22 +20,17 @@ create table Users(
 	Email nchar(50)
 );
 
-create table Locations(
+create table GenericResource(
 	ID int IDENTITY primary key foreign key references MapData(ID),
 	Title nchar(40) unique not null,
 	Comment nchar(500)
 );
 
-CREATE TABLE GenericResource(
-  ID INT IDENTITY PRIMARY KEY,
-  Name VARCHAR(40),
-  Description VARCHAR(40),
-  LocID int foreign key references MapData(ID)
-);
+
 
 create table ConsumableResource(
 	ID int identity(1,1) primary key,
-  Resource_ID FOREIGN KEY REFERENCES GenericResource(ID) not null,
+  Loc_ID FOREIGN KEY REFERENCES MapData(ID) not null,
   Price MONEY,
   Quantity INT NOT NULL CHECK (Quantity>0)
 );
