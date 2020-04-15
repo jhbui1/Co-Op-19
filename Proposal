@@ -1,0 +1,25 @@
+User Stories
+- Users can register to become members of the website in order to add resources and sign up for alerts 
+- Logged in users can add resources by selecting a type they would like to add from consumable, health, shelter, and fill in relevant details.
+- Users can filter resource tables by unique attributes e.g by expiration for consumables, cost for health services.
+- Resources can be sorted by date added, expiration date, cost
+- Users can view the details of a resource and resources associated with the requested resource if applicable such as services associated to a healthcare resource.
+-Using a map API like MapQuest/Google Maps, user's can click a city on a map and resource tables will be filtered by city/various granularity.
+ -Using a phone service API like Twilio, can provide alerts to users in a given area for new local infections/resources using an admin dashboard
+- Added resources would be validated based on the category they are added to e.g consumables are not expired, shelter has positive vacancy updates
+- Users can display statistics based on infections in their area including count, and infection rate compared to city population.
+
+
+
+Data Model Additions
+User table with location,contact
+Generic resource table with description
+Consumable resource table with qty,expiration that references generic
+shelter resource table with available occupancy, cost, address
+testing/health resource table with avg cost, specialty services
+All specific resources such as consumables, shelter, healthcare etc. would follow a non-overlapping one-to-one Is-A relation with the generic resource table. 
+Some resources may have many to one relationships e.g health resources may have referencing services 
+Services would contain est. cost/wait time/description 
+
+Minimum Viable Project
+All resource collection functions including assisted filtering using map API without phone alerts. 
