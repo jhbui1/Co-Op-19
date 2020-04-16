@@ -1268,20 +1268,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
-      },
-      "CoOp19.Dtb/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "3.1.3",
-          "Microsoft.EntityFrameworkCore.SqlServer": "3.1.3"
-        },
-        "compile": {
-          "bin/placeholder/CoOp19.Dtb.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/CoOp19.Dtb.dll": {}
-        }
       }
     }
   },
@@ -4964,16 +4950,10 @@
         "system.xml.xmlserializer.4.3.0.nupkg.sha512",
         "system.xml.xmlserializer.nuspec"
       ]
-    },
-    "CoOp19.Dtb/1.0.0": {
-      "type": "project",
-      "path": "../CoOp19.Dtb/CoOp19.Dtb.csproj",
-      "msbuildProject": "../CoOp19.Dtb/CoOp19.Dtb.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "CoOp19.Dtb >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 3.1.3",
       "Microsoft.EntityFrameworkCore.Design >= 3.1.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.3"
@@ -5004,11 +4984,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {
-            "C:\\Revature\\Co-Op-19\\CoOp19\\CoOp19.Dtb\\CoOp19.Dtb.csproj": {
-              "projectPath": "C:\\Revature\\Co-Op-19\\CoOp19\\CoOp19.Dtb\\CoOp19.Dtb.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {

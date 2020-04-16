@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using CoOp19.Dtb;
 
 namespace CoOp19.App.Controllers
 {
@@ -22,7 +23,25 @@ namespace CoOp19.App.Controllers
         [HttpGet]
         public IEnumerable<MapData> Get()
         {
-      throw new Exception();
+      var output = new List<MapData>();
+      using (var context = new DB19Context())
+      {
+        foreach (var item in context.MapData)
+        {
+          output.Add(new MapData
+          {
+            gpsn = item.Gpsn ?? default,
+            gpsw = item.Gpsw ?? default,
+            ID = item.Id,
+            address = item.Address,
+            city = item.City,
+            state = item.State
+          });
+          
+        }
+
+        return output;
+      }
         }
     }
 }
