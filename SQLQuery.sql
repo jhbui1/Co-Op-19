@@ -10,7 +10,7 @@ create table MapData(
 );
 
 create table Users(
-	ID int primary key 
+	ID int primary key ,
   Loc INT foreign key references MapData(ID),
 	UserName nchar(30) unique not null,
 	Password nchar(30) not null,
@@ -30,6 +30,7 @@ create table GenericResource(
 
 create table ConsumableResource(
 	ID int identity(1,1) primary key,
+  Resource_ID int FOREIGN KEY REFERENCES GenericResource(ID) not null,
   Loc_ID FOREIGN KEY REFERENCES MapData(ID) not null,
   Price MONEY,
   Quantity INT NOT NULL CHECK (Quantity>0)
@@ -37,8 +38,8 @@ create table ConsumableResource(
 
 create table HealthResource(
 	ID int IDENTITY primary key,
-  Resource_ID FOREIGN KEY REFERENCES GenericResource(ID) not null,
-	ProvidesTests bit not null DEFAULT false,
+  Resource_ID int FOREIGN KEY REFERENCES GenericResource(ID) not null,
+	ProvidesTests bit not null DEFAULT 0,
 	TestPrice money
 );
 
@@ -53,7 +54,7 @@ CREATE TABLE HealthResourceServices(
 
 CREATE TABLE ShelterResource(
   ID INT IDENTITY PRIMARY KEY,
-  Resource_ID FOREIGN KEY REFERENCES GenericResource(ID) not null,
+  Resource_ID int FOREIGN KEY REFERENCES GenericResource(ID) not null,
   Vacancy INT NOT NULL CHECK (Vacancy>0),
   Rating tinyint not null,
 	IsSafe bit not null
