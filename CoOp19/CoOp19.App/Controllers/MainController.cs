@@ -20,9 +20,9 @@ namespace CoOp19.App.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Generic> Get()
+        public IEnumerable<MapData> Get()
         {
-          
+      throw new Exception();
         }
     }
 }

@@ -1,0 +1,8 @@
+C:\Revature\Co-Op-19\CoOp19\CoOp19.Dtb\bin\Debug\netstandard2.0\CoOp19.Dtb.deps.json
+C:\Revature\Co-Op-19\CoOp19\CoOp19.Dtb\bin\Debug\netstandard2.0\CoOp19.Dtb.dll
+C:\Revature\Co-Op-19\CoOp19\CoOp19.Dtb\obj\Debug\netstandard2.0\CoOp19.Dtb.csprojAssemblyReference.cache
+C:\Revature\Co-Op-19\CoOp19\CoOp19.Dtb\obj\Debug\netstandard2.0\CoOp19.Dtb.AssemblyInfoInputs.cache
+C:\Revature\Co-Op-19\CoOp19\CoOp19.Dtb\obj\Debug\netstandard2.0\CoOp19.Dtb.AssemblyInfo.cs
+C:\Revature\Co-Op-19\CoOp19\CoOp19.Dtb\bin\Debug\netstandard2.0\CoOp19.Dtb.pdb
+C:\Revature\Co-Op-19\CoOp19\CoOp19.Dtb\obj\Debug\netstandard2.0\CoOp19.Dtb.dll
+C:\Revature\Co-Op-19\CoOp19\CoOp19.Dtb\obj\Debug\netstandard2.0\CoOp19.Dtb.pdb
