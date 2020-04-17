@@ -1,30 +1,26 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using CoOp19.Dtb;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using CoOp19.Dtb;
-using CoOp19.Dtb.Entities;
-using CoOp19.App.Models;
+using System.Collections.Generic;
+
 
 namespace CoOp19.App.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class MainController : ControllerBase
+  [ApiController]
+  [Route("[controller]")]
+  public class MainController : ControllerBase
+  {
+
+    private readonly ILogger<MainController> _logger;
+
+    public MainController(ILogger<MainController> logger)
     {
+      _logger = logger;
+    }
 
-        private readonly ILogger<MainController> _logger;
-
-        public MainController(ILogger<MainController> logger)
-        {
-            _logger = logger;
-        }
-
-        [HttpGet]
-        public IEnumerable<MapData> Get()
-        {
+    [HttpGet]
+    public ActionResult<IEnumerable<MapData>> Get()
+    {
       var output = new List<MapData>();
       using (var context = new DB19Context())
       {
@@ -39,12 +35,23 @@ namespace CoOp19.App.Controllers
             city = item.City,
             state = item.State
           });
-          
+
         }
 
-        return output;
+        return Ok(output);
+
       }
-        }
-   
+    }
+
+    [HttpGet("{id}")]
+    public ActionResult<IEnumerable<MapData>> Get(int id)
+    {
+      var output = new List<MapData>();
+      using (var context = new DB19Context())
+      {
+        return Ok(context.MapData.Find(id));
+      }
+    }
+
   }
 }
