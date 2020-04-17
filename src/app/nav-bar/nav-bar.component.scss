@@ -1,0 +1,16 @@
+#nav-bar {
+    background:grey;
+    position: fixed;
+}
+
+button {
+    margin-right: 1vw;
+}
+
+#nav-buttons {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 1vh;
+    padding-top: 1vh;
+    justify-content: flex-end;
+}
