@@ -1,3 +1,4 @@
+using CoOp19.Dtb.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,10 @@ namespace CoOp19.App.Models
 {
   public class ConsumableViewResource
   {
+    public ConsumableViewResource(Dtb.Entities.MapData map, ConsumableResource consumable)
+    {
+    }
+
     public int Id { get; set; }
     public int ResourceId { get; set; }
     public decimal? Price { get; set; }
