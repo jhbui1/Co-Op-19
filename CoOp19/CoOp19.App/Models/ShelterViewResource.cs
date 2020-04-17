@@ -7,8 +7,23 @@ namespace CoOp19.App.Models
 {
   public class ShelterViewResource
   {
+    public ShelterViewResource(Dtb.Entities.MapData map,
+      Dtb.Entities.ShelterResource shelt,
+      Dtb.Entities.GenericResource gen)
+    {
+      Id = shelt.Id;
+      Vacancy = shelt.Vacancy;
+      Rating = shelt.Rating;
+      IsSafe = shelt.IsSafe;
+      Gpsn = map.Gpsn;
+      Gpsw = map.Gpsw;
+      Address = map.Address;
+      City = map.City;
+      State = map.State;
+      Name = gen.Name;
+      Description = gen.Description;
+    }
     public int Id { get; set; }
-    public int ResourceId { get; set; }
     public int Vacancy { get; set; }
     public byte Rating { get; set; }
     public bool IsSafe { get; set; }
@@ -17,5 +32,7 @@ namespace CoOp19.App.Models
     public string City { get; set; }
     public string Address { get; set; }
     public string State { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
   }
 }

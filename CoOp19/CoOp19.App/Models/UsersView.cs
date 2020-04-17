@@ -1,3 +1,4 @@
+using CoOp19.Dtb.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,21 @@ namespace CoOp19.App.Models
 {
   public class UsersView
   {
+    public UsersView(Dtb.Entities.MapData map, Users user)
+    {
+      Id = user.Id;
+      UserName = user.UserName;
+      Password = user.Password;
+      Fname = user.Fname;
+      Lname = user.Lname;
+      Phone = user.Phone;
+      Email = user.Email;
+      Gpsn = map.Gpsn;
+      Gpsw = map.Gpsw;
+      Address = map.Address;
+      City = map.City;
+      State = map.State;
+    }
     public int Id { get; set; }
     public int? Loc { get; set; }
     public string UserName { get; set; }

@@ -1,3 +1,4 @@
+using CoOp19.Dtb.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,20 @@ namespace CoOp19.App.Models
 {
   public class HealthViewResource
   {
+    public HealthViewResource(HealthResource health, GenericResource gen, Dtb.Entities.MapData map)
+    {
+      Id = health.Id;
+      ProvidesTests = health.ProvidesTests;
+      TestPrice = health.TestPrice;
+      Gpsn = map.Gpsn;
+      Gpsw = map.Gpsw;
+      Address = map.Address;
+      City = map.City;
+      State = map.State;
+      Name = gen.Name;
+      Description = gen.Description;
+    }
+
     public int Id { get; set; }
     public int ResourceId { get; set; }
     public bool ProvidesTests { get; set; }
@@ -16,6 +31,8 @@ namespace CoOp19.App.Models
     public string City { get; set; }
     public string Address { get; set; }
     public string State { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
     public DateTime DateModified { get; set; } = DateTime.Now;
 
     public List<HealthViewResource> ConsumableViewResources { get; set; } = new List<HealthViewResource>();
