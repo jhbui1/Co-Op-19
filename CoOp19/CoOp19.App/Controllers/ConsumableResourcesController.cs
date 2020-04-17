@@ -23,7 +23,7 @@ namespace CoOp19.App.Controllers
       _context = context;
     }
     [HttpGet]
-    public IEnumerable<ConsumableViewResource> Get()
+    /*public IEnumerable<ConsumableViewResource> Get()
     {
       var output = new List<ConsumableViewResource>();
       using (var context = new DB19Context())
@@ -32,14 +32,14 @@ namespace CoOp19.App.Controllers
         {
           output.Add(new ConsumableViewResource
           {
-            
-          }
+
+          });
         }
       }
-    }
+    }*/
 
     // GET: api/ConsumableViewResources
-    [HttpGet]
+    /*[HttpGet]
     public async Task<ActionResult<IEnumerable<ConsumableViewResource>>> GetConsumableViewResource()
     {
       var output = new List<ConsumableViewResource>();
@@ -49,13 +49,13 @@ namespace CoOp19.App.Controllers
         {
           using (var context2 = new DB19Context())
           {
-            var map = context2.MapData.Find(ConsumableResource.Loc);
+            var map = context2.MapData.Find(ConsumableResource.);
             output.Add(new ConsumableViewResource(map, Consumable));
           }
         }
         return Ok(output);
       }
-    }
+    }*/
     [HttpPost]
     [Consumes("application/xml")] // this action method won't accept JSON as input, only XML
     [ProducesResponseType(201, Type = typeof(ConsumableViewResource))]

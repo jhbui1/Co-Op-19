@@ -21,7 +21,7 @@ namespace CoOp19.App.Controllers
     {
       _context = context;
     }
-
+    /*
     // GET: api/GenericResources
     [HttpGet]
     public async Task<ActionResult<IEnumerable<GenericViewResource>>> GetGenericViewResource()
@@ -43,7 +43,7 @@ namespace CoOp19.App.Controllers
         }
         return Ok(output);
       }
-    }
+    }*/
     [HttpPost]
     [Consumes("application/xml")] // this action method won't accept JSON as input, only XML
     [ProducesResponseType(201, Type = typeof(GenericViewResource))]
