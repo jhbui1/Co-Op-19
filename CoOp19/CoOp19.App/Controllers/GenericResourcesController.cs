@@ -21,13 +21,9 @@ namespace CoOp19.App.Controllers
     {
       _context = context;
     }
-    /*
+
     // GET: api/GenericResources
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<GenericViewResource>>> GetGenericViewResource()
-    {
-      return await _context.GenericViewResource.ToListAsync();
-    }
+    [HttpGet]  
     public async Task<ActionResult<IEnumerable<GenericViewResource>>> GetGenericViewResource()
     {
       var output = new List<GenericViewResource>();
@@ -43,32 +39,41 @@ namespace CoOp19.App.Controllers
         }
         return Ok(output);
       }
-    }*/
+    }
+    [HttpGet("{ID}")]
+    public async Task<GenericViewResource> GetOneActionAsync(int id)
+    {
+      using (var context = new DB19Context())
+      {
+        var generic = await context.GenericResource.FindAsync(id);
+        var map = await context.MapData.FindAsync(generic.ResourceId);
+        return new GenericViewResource(map, generic);
+      }
+    }
     [HttpPost]
     [Consumes("application/xml")] // this action method won't accept JSON as input, only XML
     [ProducesResponseType(201, Type = typeof(GenericViewResource))]
     [ProducesResponseType(400)]
-    public async Task<ActionResult<GenericResource>> PostGenericResourceAsync(GenericResource genericResource)
+    public async Task<ActionResult<GenericResource>> PostGenericResourceAsync(GenericViewResource genericResource)
     {
       using (var context = new DB19Context())
       {
-        await context.GenericResource.AddAsync(genericResource);
+        var map = new Dtb.Entities.MapData
+        {
+          Gpsn = genericResource.Gpsn,
+          Gpsw = genericResource.Gpsw,
+          City = genericResource.City,
+          Address = genericResource.Address,
+          State = genericResource.State
+        };
+        await context.GenericResource.AddAsync(new Dtb.Entities.GenericResource
+          {
+              Name = genericResource.Name,
+              Description = genericResource.Description,
+              LocNavigation = map,
+          });
       }
       return Ok();
-    }
-
-    // GET: api/GenericResources/5
-    [HttpGet("{id}")]
-    public async Task<ActionResult<GenericResource>> GetGenericResource(int id)
-    {
-      var genericResource = await _context.GenericResource.FindAsync(id);
-
-      if (genericResource == null)
-      {
-        return NotFound();
-      }
-
-      return genericResource;
     }
 
     // PUT: api/GenericResources/5
