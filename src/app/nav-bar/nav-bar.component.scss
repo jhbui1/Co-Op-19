@@ -1,16 +1,25 @@
 #nav-bar {
     background:grey;
     position: fixed;
+    width: 100%;
+}
+
+#nav-content {
+    display: flex;
+    flex-direction: row;
 }
 
 button {
     margin-right: 1vw;
+    border-radius: 10vw;
+    padding: .5vw;
 }
 
 #nav-buttons {
+    width: 90%;
     display: flex;
     flex-direction: row;
     padding-bottom: 1vh;
     padding-top: 1vh;
-    justify-content: flex-end;
+    justify-content: center;
 }
