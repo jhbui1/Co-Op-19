@@ -10,6 +10,17 @@ namespace CoOp19.App.Models
   {
     public ConsumableViewResource(Dtb.Entities.MapData map, ConsumableResource consumable)
     {
+            
+      Id = consumable.Id;
+      Price = consumable.Price;
+      Quantity = map.Quantity;
+      Gpsn = map.Gpsn;
+      Gpsw = map.Gpsw;
+      Address = map.Address;
+      City = map.City;
+      State = map.State;
+      Name = consumable.Name;
+      Description = consumable.Description;
     }
 
     public int Id { get; set; }

@@ -13,7 +13,7 @@ namespace CoOp19.App.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class ConsumableViewResourcesController : ControllerBase
+  public class ConsumableResourcesController : ControllerBase
   {
     private readonly DB19Context _context;
 
@@ -23,66 +23,61 @@ namespace CoOp19.App.Controllers
       _context = context;
     }
     [HttpGet]
-    public IEnumerable<ConsumableViewResource> Get()
+    public async Task<IEnumerable<ConsumableViewResource>> GetActionAsync()
     {
       var output = new List<ConsumableViewResource>();
       using (var context = new DB19Context())
       {
         foreach (var consumable in context.ConsumableResource)
         {
-          output.Add(new ConsumableViewResource
+          using (var context2 = new DB19Context())
           {
-            
+            var generic = await context2.GenericResource.FindAsync(consumable.ResourceId);
+            var map = await context2.MapData.FindAsync(generic.ResourceId);
+            output.Add(new ConsumableViewResource(map, consumable,generic));
           }
         }
+      }
+      return output;
+    }
+    [HttpGet("{ID}")]
+    public async Task<ConsumableViewResource> GetOneActionAsync(int id)
+    {
+      using (var context = new DB19Context())
+      {
+        var consumable = await context.ConsumableResource.FindAsync(id);
+        var generic = await context.GenericResource.FindAsync(consumable.ResourceId);
+        var map = await context.MapData.FindAsync(generic.ResourceId);
+        return new ShelterViewResource(map, consumable, generic);
       }
     }
 
-    // GET: api/ConsumableViewResources
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<ConsumableViewResource>>> GetConsumableViewResource()
-    {
-      var output = new List<ConsumableViewResource>();
-      using (var context = new DB19Context())
-      {
-        foreach (var Consumable in context.ConsumableResource)
-        {
-          using (var context2 = new DB19Context())
-          {
-            var map = context2.MapData.Find(ConsumableResource.Loc);
-            output.Add(new ConsumableViewResource(map, Consumable));
-          }
-        }
-        return Ok(output);
-      }
-    }
     [HttpPost]
     [Consumes("application/xml")] // this action method won't accept JSON as input, only XML
     [ProducesResponseType(201, Type = typeof(ConsumableViewResource))]
     [ProducesResponseType(400)]
-    public async Task<ActionResult<ConsumableResource>> PostConsumableResourceAsync(ConsumableResource consumableResource)
+    public async Task<ActionResult<ConsumableResource>> PostAsync([FromBody] ConsumableViewResource consumableResource)
     {
       using (var context = new DB19Context())
       {
-        await context.ConsumableResource.AddAsync(consumableResource);
+        var map = new Dtb.Entities.MapData
+          {
+            Gpsn = consumableResource.Gpsn,
+            Gpsw = consumableResource.Gpsw,
+            City = consumableResource.City,
+            Address = consumableResource.Address,
+            State = consumableResource.State
+          };
+        await context.ConsumableResource.AddAsync(new Dtb.Entities.ConsumableResource
+            {
+              Price = consumableResource.Price,
+              Quantity = consumableResource.Quantity,
+              LocNavigation = map
+            });
       }
       return Ok();
     }
 
-    // GET: api/ConsumableResources/5
-    [HttpGet("{id}")]
-    public async Task<ActionResult<ConsumableResource>> GetConsumableResource(int id)
-    {
-      var consumableResource = await _context.ConsumableResource.FindAsync(id);
-
-
-      if (consumableResource == null)
-      {
-        return NotFound();
-      }
-
-      return consumableResource;
-    }
 
     // PUT: api/ConsumableResources/5
     // To protect from overposting attacks, please enable the specific properties you want to bind to, for
@@ -114,18 +109,6 @@ namespace CoOp19.App.Controllers
       }
 
       return NoContent();
-    }
-
-    // POST: api/ConsumableResources
-    // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-    // more details see https://aka.ms/RazorPagesCRUD.
-    [HttpPost]
-    public async Task<ActionResult<ConsumableResource>> PostConsumableResource(ConsumableResource consumableResource)
-    {
-      _context.ConsumableResource.Add(consumableResource);
-      await _context.SaveChangesAsync();
-
-      return CreatedAtAction("GetConsumableResource", new { id = consumableResource.Id }, consumableResource);
     }
 
     // DELETE: api/ConsumableResources/5
