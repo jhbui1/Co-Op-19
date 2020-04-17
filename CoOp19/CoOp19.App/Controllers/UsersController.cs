@@ -43,5 +43,34 @@ namespace CoOp19.App.Controllers
         }
       }
     }
+
+    [HttpPost]
+    [ProducesResponseType(201, Type = typeof(UsersView))]
+    [ProducesResponseType(400)]
+    public async Task<ActionResult> PostAsync([FromBody] UsersView User)
+    {
+      using (var context = new DB19Context())
+      {
+        var map = new Dtb.Entities.MapData
+        {
+          Gpsn = User.Gpsn,
+          Gpsw = User.Gpsw,
+          City = User.City,
+          Address = User.Address,
+          State = User.State
+        };
+        await context.Users.AddAsync(new Dtb.Entities.Users
+        {
+          UserName = User.UserName,
+          Password = User.Password,
+          Fname = User.Fname,
+          Lname = User.Lname,
+          Phone = User.Phone,
+          Email = User.Email,
+          LocNavigation = map
+        });
+      }
+      return Ok();
+    }
   }
 }

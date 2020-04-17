@@ -1,6 +1,7 @@
 using CoOp19.App.Models;
 using CoOp19.Dtb;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace CoOp19.App.Controllers
       var output = new List<HealthViewResource>();
       using (var context = new DB19Context())
       {
+        context.Users.Include("");
         foreach (var health in context.HealthResource)
         {
           using (var context2 = new DB19Context())
