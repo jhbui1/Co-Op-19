@@ -10,7 +10,7 @@ create table MapData(
 );
 
 create table Users(
-	ID int primary key ,
+	ID int identity primary key ,
   Loc INT foreign key references MapData(ID),
 	UserName nchar(30) unique not null,
 	Password nchar(30) not null,

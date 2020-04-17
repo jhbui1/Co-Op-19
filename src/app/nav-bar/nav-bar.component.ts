@@ -9,6 +9,11 @@ export class NavBarComponent implements OnInit {
 
   constructor() { }
 
+  scrollToTables(): void {
+    let target = document.getElementById("tables");
+    target.scrollIntoView({behavior:"smooth",block:"start",inline:"nearest"});
+  }
+
   ngOnInit(): void {
   }
 

@@ -37,7 +37,7 @@ namespace CoOp19.App.Models
     public string Address { get; set; }
     public string City { get; set; }
     public string State { get; set; }
-    public DateTime DateModified { get; set; } = DateTime.Now;
+    public DateTime? DateModified { get; set; } = DateTime.Now;
     public List<UsersView> UsersViews { get; set; } = new List<UsersView>();
   }
 }
