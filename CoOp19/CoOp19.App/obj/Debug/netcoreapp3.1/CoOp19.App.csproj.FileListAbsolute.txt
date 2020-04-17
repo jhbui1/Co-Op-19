@@ -64,7 +64,6 @@ C:\Revature\Co-Op-19\CoOp19\CoOp19.App\bin\Debug\netcoreapp3.1\runtimes\win-arm\
 C:\Revature\Co-Op-19\CoOp19\CoOp19.App\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Revature\Co-Op-19\CoOp19\CoOp19.App\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\e_sqlite3.dll
 C:\Revature\Co-Op-19\CoOp19\CoOp19.App\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\e_sqlite3.dll
-C:\Revature\Co-Op-19\CoOp19\CoOp19.App\obj\Debug\netcoreapp3.1\CoOp19.App.MvcApplicationPartsAssemblyInfo.cache
 C:\Revature\Co-Op-19\CoOp19\CoOp19.App\bin\Debug\netcoreapp3.1\CoOp19.App.pdb
 C:\Revature\Co-Op-19\CoOp19\CoOp19.App\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
 C:\Revature\Co-Op-19\CoOp19\CoOp19.App\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll

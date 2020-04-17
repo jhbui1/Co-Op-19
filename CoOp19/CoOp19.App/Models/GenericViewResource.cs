@@ -1,3 +1,4 @@
+using CoOp19.Dtb.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,10 @@ namespace CoOp19.App.Models
 {
   public class GenericViewResource
   {
+    public GenericViewResource(Dtb.Entities.MapData map, GenericResource generic)
+    {
+    }
+
     public int Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
