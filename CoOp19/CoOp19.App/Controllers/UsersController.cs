@@ -1,6 +1,7 @@
 using CoOp19.App.Models;
 using CoOp19.Dtb;
 using CoOp19.Dtb.Entities;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;

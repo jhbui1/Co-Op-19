@@ -16,7 +16,7 @@ export class RegisterFormComponent implements OnInit {
   async addUser(user:User): Promise<any> {
     const body = JSON.stringify(user);
     console.log(body);
-    const response = await fetch('/users',{
+    const response = await fetch('https://localhost:44382/users',{
       method:"POST",
       mode: "cors",
       headers: {
