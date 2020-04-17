@@ -43,7 +43,6 @@ C:\Revature\Co-Op-19\CoOp19\CoOp19.App\obj\Debug\netcoreapp3.1\CoOp19.App.RazorT
 C:\Revature\Co-Op-19\CoOp19\CoOp19.App\obj\Debug\netcoreapp3.1\CoOp19.App.csproj.CopyComplete
 C:\Revature\Co-Op-19\CoOp19\CoOp19.App\obj\Debug\netcoreapp3.1\staticwebassets\CoOp19.App.StaticWebAssets.Manifest.cache
 C:\Revature\Co-Op-19\CoOp19\CoOp19.App\obj\Debug\netcoreapp3.1\staticwebassets\CoOp19.App.StaticWebAssets.xml
-C:\Revature\Co-Op-19\CoOp19\CoOp19.App\obj\Debug\netcoreapp3.1\CoOp19.App.genruntimeconfig.cache
 C:\Revature\Co-Op-19\CoOp19\CoOp19.App\bin\Debug\netcoreapp3.1\Microsoft.Data.Sqlite.dll
 C:\Revature\Co-Op-19\CoOp19\CoOp19.App\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Revature\Co-Op-19\CoOp19\CoOp19.App\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Sqlite.dll
