@@ -8,6 +8,7 @@ namespace CoOp19.App.Models
 {
   public class UsersView
   {
+    public UsersView() { }
     public UsersView(Dtb.Entities.MapData map, Users user)
     {
       Id = user.Id;

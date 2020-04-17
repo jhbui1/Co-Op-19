@@ -8,6 +8,7 @@ namespace CoOp19.App.Models
 {
   public class HealthViewResource
   {
+    public HealthViewResource() { }
     public HealthViewResource(HealthResource health, GenericResource gen, Dtb.Entities.MapData map)
     {
       Id = health.Id;

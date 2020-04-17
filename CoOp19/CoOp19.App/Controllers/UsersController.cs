@@ -69,6 +69,7 @@ namespace CoOp19.App.Controllers
           Email = User.Email,
           LocNavigation = map
         });
+        await context.SaveChangesAsync();
       }
       return Ok();
     }

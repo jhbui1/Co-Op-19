@@ -40,5 +40,38 @@ namespace CoOp19.App.Controllers
         return new ShelterViewResource(map, shelt, gen);
       }
     }
+
+    [HttpPost]
+    [ProducesResponseType(201, Type = typeof(ShelterViewResource))]
+    [ProducesResponseType(400)]
+    public async Task<ActionResult> PostAsync([FromBody] ShelterViewResource shelt)
+    {
+      using (var context = new DB19Context())
+      {
+        var map = new Dtb.Entities.MapData
+        {
+          Gpsn = shelt.Gpsn,
+          Gpsw = shelt.Gpsw,
+          City = shelt.City,
+          Address = shelt.Address,
+          State = shelt.State
+        };
+        var gen = new Dtb.Entities.GenericResource
+        {
+          Loc = map,
+          Name = shelt.Name,
+          Description = shelt.Description
+        };
+        await context.ShelterResource.AddAsync(new Dtb.Entities.ShelterResource
+        {
+          Vacancy = shelt.Vacancy,
+          Rating = shelt.Rating,
+          IsSafe = shelt.IsSafe,
+          Resource = gen
+        });
+        await context.SaveChangesAsync();
+      }
+      return Ok();
+    }
   }
 }
