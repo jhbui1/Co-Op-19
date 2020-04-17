@@ -7,6 +7,7 @@ namespace CoOp19.App.Models
 {
   public class ShelterViewResource
   {
+    public ShelterViewResource() { }
     public ShelterViewResource(Dtb.Entities.MapData map,
       Dtb.Entities.ShelterResource shelt,
       Dtb.Entities.GenericResource gen)
