@@ -10,115 +10,129 @@ using CoOp19.Dtb.Entities;
 
 namespace CoOp19.App.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UsersController : ControllerBase
+  [Route("api/[controller]")]
+  [ApiController]
+  public class UsersController : ControllerBase
+  {
+    private readonly DB19Context _context;
+
+    public UsersController(DB19Context context)
     {
-        private readonly DB19Context _context;
-
-        public UsersController(DB19Context context)
-        {
-            _context = context;
-        }
-
-        // GET: api/Users
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
-        {
-            return await _context.Users.ToListAsync();
-        }
-
-        // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Users>> GetUsers(int id)
-        {
-            var users = await _context.Users.FindAsync(id);
-
-            if (users == null)
-            {
-                return NotFound();
-            }
-
-            return users;
-        }
-
-        // PUT: api/Users/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsers(int id, Users users)
-        {
-            if (id != users.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(users).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UsersExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Users
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        [HttpPost]
-        public async Task<ActionResult<Users>> PostUsers(Users users)
-        {
-            _context.Users.Add(users);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (UsersExists(users.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetUsers", new { id = users.Id }, users);
-        }
-
-        // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Users>> DeleteUsers(int id)
-        {
-            var users = await _context.Users.FindAsync(id);
-            if (users == null)
-            {
-                return NotFound();
-            }
-
-            _context.Users.Remove(users);
-            await _context.SaveChangesAsync();
-
-            return users;
-        }
-
-        private bool UsersExists(int id)
-        {
-            return _context.Users.Any(e => e.Id == id);
-        }
+      _context = context;
     }
+
+    // GET: api/Users
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
+    {
+      return await _context.Users.ToListAsync();
+    }
+
+    // GET: api/Users/5
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Users>> GetUsers(int id)
+    {
+      var users = await _context.Users.FindAsync(id);
+
+      if (users == null)
+      {
+        return NotFound();
+      }
+
+      return users;
+    }
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Users>> GetUsers([FromRoute] int id)
+    //public async Task<IActionResult> GetUsers([FromRoute] int id)
+    {
+      if(!ModelState.IsValid)
+      {
+        return BadRequest(ModelState);
+      }
+      var Users = await _context.Users.SingleOrDefaultAsync(u => u.Id == id);
+      if(Users == null)
+      {
+        return NotFound();
+      }
+      return Ok(Users);
+    }
+    // PUT: api/Users/5
+    // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+    // more details see https://aka.ms/RazorPagesCRUD.
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutUsers(int id, Users users)
+    {
+      if (id != users.Id)
+      {
+        return BadRequest();
+      }
+
+      _context.Entry(users).State = EntityState.Modified;
+
+      try
+      {
+        await _context.SaveChangesAsync();
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+        if (!UsersExists(id))
+        {
+          return NotFound();
+        }
+        else
+        {
+          throw;
+        }
+      }
+
+      return NoContent();
+    }
+
+    // POST: api/Users
+    // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+    // more details see https://aka.ms/RazorPagesCRUD.
+    [HttpPost]
+    public async Task<ActionResult<Users>> PostUsers(Users users)
+    {
+      _context.Users.Add(users);
+      try
+      {
+        await _context.SaveChangesAsync();
+      }
+      catch (DbUpdateException)
+      {
+        if (UsersExists(users.Id))
+        {
+          return Conflict();
+        }
+        else
+        {
+          throw;
+        }
+      }
+
+      return CreatedAtAction("GetUsers", new { id = users.Id }, users);
+    }
+
+    // DELETE: api/Users/5
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<Users>> DeleteUsers(int id)
+    {
+      var users = await _context.Users.FindAsync(id);
+      if (users == null)
+      {
+        return NotFound();
+      }
+
+      _context.Users.Remove(users);
+      await _context.SaveChangesAsync();
+
+      return users;
+    }
+
+    private bool UsersExists(int id)
+    {
+      return _context.Users.Any(e => e.Id == id);
+    }
+  }
 }

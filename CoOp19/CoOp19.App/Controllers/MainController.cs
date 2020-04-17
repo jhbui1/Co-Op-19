@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CoOp19.Dtb;
-
+using CoOp19.Dtb.Entities;
+using CoOp19.App.Models;
 
 namespace CoOp19.App.Controllers
 {
@@ -44,8 +45,6 @@ namespace CoOp19.App.Controllers
         return output;
       }
         }
-    
-        
-    
+   
   }
 }
