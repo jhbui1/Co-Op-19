@@ -12,21 +12,20 @@ import {User} from './interfaces/user';
 })
 export class UserService {
 
-  private url = 'api/users';
+  private url = 'http://localhost:44382/users';
+  private headers: HttpHeaders;
 
-  httpOptions = {
-    headers: new HttpHeaders ({'Content-Type' : 'application/json'})
-  };
 
-  constructor(
-    private http:HttpClient,
-    ) { }
+  constructor(private http:HttpClient) { 
+      this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'})
+    }
 
     private handleError<T>(operation = 'operation', result?: T) {
+      console.log("error");
       return (error: any): Observable<T> => {
   
         // TODO: send the error to remote logging infrastructure
-        console.error(error); // log to console instead
+        console.log(error); // log to console instead
   
         // TODO: better job of transforming error for user consumption
   
@@ -34,10 +33,13 @@ export class UserService {
         return of(result as T);
       };
     }
-  addUser(user: User) : Observable<User> {
-    return this.http.post<User>(this.url,user,this.httpOptions).pipe(
-      tap((newUser:User)=>console.log(`added hero w/ id=${newUser.Username}`)),
-      catchError(this.handleError<User>('addUser'))
-    );
-  }
+  // addUser(user: User) : Promise<User> {
+  //   console.log(user);
+  //     return fetch('https://deckofcardsapi.com/api/deck/new/')
+  //         .then(response => response.json())
+  //         .then(responseObj => {
+  //             this.currentDeckId = responseObj.deck_id;
+  //             console.log(this.currentDeckId);
+  //         });
+  // }
 }

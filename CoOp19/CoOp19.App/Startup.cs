@@ -27,7 +27,18 @@ namespace CoOp19.App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           services.AddDbContext<DB19Context>(options =>
+        services.AddCors(options =>
+        {
+          options.AddDefaultPolicy(
+              builder =>
+              {
+                builder.WithOrigins("http://localhost:4200/",
+                                    "https://co-op19.azurewebsites.net/"
+                  );
+              });
+        });
+
+        services.AddDbContext<DB19Context>(options =>
            options.UseSqlServer(Configuration.GetConnectionString("DB19Context")));
            services.AddControllers();
         }
@@ -39,6 +50,8 @@ namespace CoOp19.App
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
 
