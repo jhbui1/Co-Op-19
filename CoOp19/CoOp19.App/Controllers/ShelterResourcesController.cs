@@ -40,5 +40,32 @@ namespace CoOp19.App.Controllers
         return new ShelterViewResource(map, shelt, gen);
       }
     }
+    [HttpPost]
+    [Consumes("application/xml")] // this action method won't accept JSON as input, only XML
+    [ProducesResponseType(201, Type = typeof(ShelterViewResource))]
+    [ProducesResponseType(400)]
+    public async Task<ActionResult<ShelterResource>> PostShelterResourceAsync(ShelterViewResource shelterResource)
+    {
+      using (var context = new DB19Context())
+      {
+        var map = new Dtb.Entities.MapData
+        {
+          Gpsn = shelterResource.Gpsn,
+          Gpsw = shelterResource.Gpsw,
+          City = shelterResource.City,
+          Address = shelterResource.Address,
+          State = shelterResource.State
+        };
+        await context.ShelterResource.AddAsync(new Dtb.Entities.ShelterResource
+          {
+              Vacancy = shelterResource.Vacancy,
+              Rating = shelterResource.Rating,
+              IsSafe = shelterResource.IsSafe,
+              LocNavigation = map,
+          });
+      }
+    }
   }
 }
+
+
