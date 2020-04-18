@@ -1,51 +1,80 @@
 <div id="register-form-content">
     <h2>Register</h2>
     <form #userForm="ngForm">
+
+        <div *ngIf="dbUpdateError" class="alert alert-danger">
+            Failed to add user. Username/e-mail taken or database is down.
+        </div>
+
         <label for="username">Username</label>
         <input type="text" id="username" name="username" class="form-control"
-        required minlength="4"
-        [(ngModel)]="user.Username" #name="ngModel" >
-    <!-- 
+        required minlength="4" maxlength="30"
+        [(ngModel)]="user.Username" #username="ngModel" >
         <div *ngIf="username.invalid && (username.dirty || username.touched)"
         class="alert alert-danger">
-
-            <div *ngIf="username.errors.required">
+            <div *ngIf="username.errors?.required">
             Name is required.
             </div>
-            <div *ngIf="username.errors.minlength">
+            <div *ngIf="username.errors?.minlength">
             Name must be at least 4 characters long.
             </div>
-            <div *ngIf="username.errors.forbiddenName">
-            Name cannot be Bob.
-            </div>
+        </div>
 
-        </div> -->
         <label for="password">Password</label>
-        <input type="text" id="password" name="password" class="form-control"
-        required minlength="4"
-        [(ngModel)]="user.Password" #name="ngModel" >
+        <input type="password" id="password" name="password" class="form-control"
+        required minlength="4" maxlength="30"
+        [(ngModel)]="user.Password" #password="ngModel" >
+        <div *ngIf="password.invalid && (password.dirty || password.touched)"
+        class="alert alert-danger">
+            <div *ngIf="password.errors?.required">
+            Password is required.
+            </div>
+            <div *ngIf="password.errors?.minlength">
+            Password must be at least 4 characters long.
+            </div>
+        </div>
+
 
         <label for="firstname">First Name</label>
         <input type="text" id="firstname" name="firstname" class="form-control"
-        required minlength="4" 
-        [(ngModel)]="user.FName" #name="ngModel" >
+        required minlength="4" maxlength="30" 
+        [(ngModel)]="user.FName" #firstname="ngModel" >
+        <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)"
+        class="alert alert-danger">
+            <div *ngIf="firstname.errors?.required">
+            First name is required.
+            </div>
+            <div *ngIf="firstname.errors?.minlength">
+            First name must be at least 4 characters long.
+            </div>
+        </div>
 
         <label for="lastname">Last Name</label>
         <input type="text" id="lastname" name="lastname" class="form-control"
-        required minlength="4" 
-        [(ngModel)]="user.LName" #name="ngModel" >
+        required minlength="2" maxlength="30"
+        [(ngModel)]="user.LName" #lastname="ngModel" >
+        <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)"
+        class="alert alert-danger">
+            <div *ngIf="lastname.errors?.required">
+            Last name is required.
+            </div>
+            <div *ngIf="lastname.errors?.minlength">
+            Last name must be at least 1 characters long.
+            </div>
+        </div>
+
 
         <label for="email">E-mail</label>
         <input type="text" id="email" name="email" class="form-control"
-        required minlength="4" 
-        [(ngModel)]="user.Email" #name="ngModel" >
+        required minlength="4" maxlength="30"
+        [(ngModel)]="user.Email" #email="ngModel">
 
         <label for="phone">Phone Number</label>
-        <input type="text" id="phone" name="phone" class="form-control"
-        required minlength="4" 
-        [(ngModel)]="user.Phone" #name="ngModel" >
+        <input type="number" id="phone" name="phone" class="form-control"
+        required minlength="4" maxlength="30"
+        [(ngModel)]="user.Phone" #phone="ngModel" >
 
 
-        <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+        <button type="submit" class="btn btn-success" (click)="onSubmit();userForm.resetForm()" [disabled]="!userForm.valid">Submit</button>
     </form>
 </div>

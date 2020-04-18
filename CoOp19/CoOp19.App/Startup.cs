@@ -17,6 +17,7 @@ namespace CoOp19.App
 {
     public class Startup
     {
+    readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,7 +28,22 @@ namespace CoOp19.App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           services.AddDbContext<DB19Context>(options =>
+        services.AddCors(options =>
+        {
+          options.AddPolicy(name: MyAllowSpecificOrigins,
+                              builder =>
+                              {
+                                builder.WithOrigins("https://co-op19.azurewebsites.net",
+                                                    "https://co-op19.azurewebsites.net/register",
+                                                    "http://localhost:4200/register",
+                                                    "http://localhost:4200"
+                                                    )
+                                                    .AllowAnyHeader()
+                                                    .AllowAnyMethod();
+                              });
+        });
+
+        services.AddDbContext<DB19Context>(options =>
            options.UseSqlServer(Configuration.GetConnectionString("DB19Context")));
            services.AddControllers();
         }
@@ -39,6 +55,10 @@ namespace CoOp19.App
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(
+              options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+            );
 
             app.UseHttpsRedirection();
 

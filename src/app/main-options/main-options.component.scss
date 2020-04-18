@@ -1,5 +1,29 @@
-#filler {
+#main-options-content {
     height: 100vh;
     background: url('https://drive.google.com/uc?export=download&id=1BflFruzTGsN3K80DOf4--29p5-yrjAoC') no-repeat center;
     background-size: 90vw 90vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
+
+#main-options-selectors {
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.select {
+    color: white;
+    background-color:rgba(0,0,0,.85);
+    border-style: solid;
+    border: solid white;
+    border-width: .5vh .5vh;
+    padding:8vw;
+}
+.select:hover {
+    cursor: pointer;
+}
+

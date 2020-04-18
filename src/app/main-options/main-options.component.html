@@ -1,2 +1,15 @@
 <p>main-options works!</p>
-<div id="filler"></div>
+<div id="main-options-content">
+    <!-- TODO  statistics/logo-->
+    <div id="main-options-selectors">
+        <div class="select add-res" routerLink="/add-resource">
+            Add a Resource
+        </div>
+        <div class="select view-res" (click)="scrollToTables()">
+            View Resources
+        </div>
+        <div class="select register" routerLink="/register">
+            Register
+        </div>
+    </div>
+</div>

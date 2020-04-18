@@ -8,19 +8,19 @@ namespace CoOp19.App.Models
 {
   public class ConsumableViewResource
   {
-    public ConsumableViewResource(Dtb.Entities.MapData map, ConsumableResource consumable)
+    public ConsumableViewResource(Dtb.Entities.MapData map, GenericResource gen, ConsumableResource consumable)
     {
-            
+      ResourceId = gen.Id;
       Id = consumable.Id;
       Price = consumable.Price;
-      Quantity = map.Quantity;
+      Quantity = consumable.Quantity;
       Gpsn = map.Gpsn;
       Gpsw = map.Gpsw;
       Address = map.Address;
       City = map.City;
       State = map.State;
-      Name = consumable.Name;
-      Description = consumable.Description;
+      Name = gen.Name;
+      Description = gen.Description;
     }
 
     public int Id { get; set; }
@@ -31,6 +31,8 @@ namespace CoOp19.App.Models
     public decimal? Gpsw { get; set; }
     public string City { get; set; }
     public string Address { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
     public string State { get; set; }
     public DateTime DateModified { get; set; } = DateTime.Now;
 

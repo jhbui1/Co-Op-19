@@ -75,55 +75,9 @@ namespace CoOp19.App.Controllers
       }
       return Ok();
     }
-
-    // PUT: api/GenericResources/5
-    // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-    // more details see https://aka.ms/RazorPagesCRUD.
-    [HttpPut("{id}")]
-    public async Task<IActionResult> PutGenericResource(int id, GenericResource genericResource)
-    {
-      if (id != genericResource.Id)
-      {
-        return BadRequest();
-      }
-
-      _context.Entry(genericResource).State = EntityState.Modified;
-
-      try
-      {
-        await _context.SaveChangesAsync();
-      }
-      catch (DbUpdateConcurrencyException)
-      {
-        if (!GenericResourceExists(id))
-        {
-          return NotFound();
-        }
-        else
-        {
-          throw;
-        }
-      }
-
-      return NoContent();
-    }
-
-    // POST: api/GenericResources
-    // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-    // more details see https://aka.ms/RazorPagesCRUD.
-    [HttpPost]
-    public async Task<ActionResult<GenericResource>> PostGenericResource(GenericResource genericResource)
-    {
-      _context.GenericResource.Add(genericResource);
-      await _context.SaveChangesAsync();
-
-      return CreatedAtAction("GetGenericResource", new { id = genericResource.Id }, genericResource);
-    }
-
     // DELETE: api/GenericResources/5
     [HttpDelete("{id}")]
-    public async Task<ActionResult<GenericResource>> DeleteGenericResource(int id)
-    {
+    public async Task<ActionResult<GenericResource>> DeleteGenericResource(int id)    {
       var genericResource = await _context.GenericResource.FindAsync(id);
       if (genericResource == null)
       {
@@ -131,14 +85,11 @@ namespace CoOp19.App.Controllers
       }
 
       _context.GenericResource.Remove(genericResource);
-      await _context.SaveChangesAsync();
-
+     await _context.SaveChangesAsync();
       return genericResource;
     }
-
-    private bool GenericResourceExists(int id)
-    {
-      return _context.GenericResource.Any(e => e.Id == id);
-    }
+    private bool GenericResourceExists(int id)   {
+     return _context.GenericResource.Any(e => e.Id == id);
+   }
   }
 }

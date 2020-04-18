@@ -11,6 +11,7 @@ namespace CoOp19.App.Models
     public GenericViewResource(Dtb.Entities.MapData map, GenericResource generic)
     {
       Id = generic.Id;
+      LocId = map.Id;
       Gpsn = map.Gpsn;
       Gpsw = map.Gpsw;
       Address = map.Address;

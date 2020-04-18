@@ -9,6 +9,11 @@ export class MainOptionsComponent implements OnInit {
 
   constructor() { }
 
+  scrollToTables() {
+    let x = document.getElementById("tables");
+    x?.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+  }
+
   ngOnInit(): void {
   }
 

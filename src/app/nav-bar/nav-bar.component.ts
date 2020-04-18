@@ -11,7 +11,7 @@ export class NavBarComponent implements OnInit {
 
   scrollToTables(): void {
     let target = document.getElementById("tables");
-    target.scrollIntoView({behavior:"smooth",block:"start",inline:"nearest"});
+    target?.scrollIntoView({behavior:"smooth",block:"start",inline:"nearest"});
   }
 
   ngOnInit(): void {

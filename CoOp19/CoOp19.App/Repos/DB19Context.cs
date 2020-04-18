@@ -153,9 +153,8 @@ namespace CoOp19.Dtb
                     .HasName("UQ__Users__C9F284564D1F27D0")
                     .IsUnique();
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .ValueGeneratedNever();
+              entity.Property(e => e.Id)
+                  .HasColumnName("ID");
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(50)
