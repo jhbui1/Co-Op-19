@@ -8,6 +8,7 @@ namespace CoOp19.App.Models
 {
   public class ConsumableViewResource
   {
+    public ConsumableViewResource() { }
     public ConsumableViewResource(Dtb.Entities.MapData map, GenericResource gen, ConsumableResource consumable)
     {
       ResourceId = gen.Id;
@@ -21,9 +22,11 @@ namespace CoOp19.App.Models
       State = map.State;
       Name = gen.Name;
       Description = gen.Description;
+      RecName = consumable.RecName;
     }
 
     public int Id { get; set; }
+    public string RecName { get; set; }
     public int ResourceId { get; set; }
     public decimal? Price { get; set; }
     public int Quantity { get; set; }

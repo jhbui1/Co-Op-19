@@ -42,7 +42,10 @@ namespace CoOp19.Dtb
 
                 entity.Property(e => e.ResourceId).HasColumnName("Resource_ID");
 
-                entity.HasOne(d => d.Resource)
+
+              entity.Property(e => e.RecName).HasColumnName("Resource_Name");
+
+              entity.HasOne(d => d.Resource)
                     .WithMany(p => p.ConsumableResource)
                     .HasForeignKey(d => d.ResourceId)
                     .OnDelete(DeleteBehavior.ClientSetNull)

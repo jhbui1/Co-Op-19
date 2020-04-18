@@ -54,7 +54,9 @@ namespace CoOp19.App.Controllers
           ResourceId = consume.ResourceId,
           Price = consume.Price,
           Quantity = consume.Quantity
+          ,RecName = consume.RecName
         });
+        await context.SaveChangesAsync();
       }
     }
   }

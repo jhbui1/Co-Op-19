@@ -8,6 +8,7 @@ namespace CoOp19.App.Models
 {
   public class GenericViewResource
   {
+    public GenericViewResource() { }
     public GenericViewResource(Dtb.Entities.MapData map, GenericResource generic)
     {
       Id = generic.Id;

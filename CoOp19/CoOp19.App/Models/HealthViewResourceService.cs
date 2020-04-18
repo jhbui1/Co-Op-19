@@ -15,7 +15,7 @@ namespace CoOp19.App.Models
       Dtb.Entities.MapData map)
     {
       Id = serv.Id;
-      RecourceId = health.Id;
+      ResourceId = health.Id;
       ProvidesTests = health.ProvidesTests;
       TestPrice = health.TestPrice;
       Gpsn = map.Gpsn;
@@ -38,7 +38,6 @@ namespace CoOp19.App.Models
     public decimal? TestPrice { get; set; }
     public int? AvgWaitHours { get; set; }
     public decimal EstCost { get; set; }
-    public int RecourceId { get; set; }
     public decimal? Gpsn { get; set; }
     public decimal? Gpsw { get; set; }
     public string City { get; set; }

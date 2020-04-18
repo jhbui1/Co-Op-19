@@ -59,8 +59,9 @@ namespace CoOp19.App.Controllers
           ServiceName = serv.ServiceName,
           AvgWaitHours = serv.AvgWaitHours,
           EstCost = serv.EstCost,
-          RecourceId = serv.RecourceId
+          RecourceId = serv.ResourceId
         });
+        await context.SaveChangesAsync();
       }
         }
     }
