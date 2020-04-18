@@ -1,45 +1,57 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError,map,tap} from 'rxjs/operators';
 
 import {User} from './interfaces/user';
 
 
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
   private url = 'http://localhost:44382/users';
-  private headers: HttpHeaders;
 
+  constructor(private http:HttpClient) {}
 
-  constructor(private http:HttpClient) { 
-      this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'})
-    }
+  private handleError<T>(operation = 'operation', result?: T) {
+    console.log("error");
+    return (error: any): Observable<T> => {
 
-    private handleError<T>(operation = 'operation', result?: T) {
-      console.log("error");
-      return (error: any): Observable<T> => {
+      // TODO: send the error to remote logging infrastructure
+      console.log(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+  async addUser(user:User): Promise<any> {
+    console.log(user);
+    
+    return this.http.post<User> (
+      'https://localhost:44382/users',JSON.stringify(user),httpOptions)
+      .subscribe();
   
-        // TODO: send the error to remote logging infrastructure
-        console.log(error); // log to console instead
-  
-        // TODO: better job of transforming error for user consumption
-  
-        // Let the app keep running by returning an empty result.
-        return of(result as T);
-      };
-    }
-  // addUser(user: User) : Promise<User> {
-  //   console.log(user);
-  //     return fetch('https://deckofcardsapi.com/api/deck/new/')
-  //         .then(response => response.json())
-  //         .then(responseObj => {
-  //             this.currentDeckId = responseObj.deck_id;
-  //             console.log(this.currentDeckId);
-  //         });
-  // }
+    // const resp = await fetch('https://localhost:44382/users',{
+    //   method:"POST",
+    //   mode: "cors",
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   redirect: 'follow',
+    //   referrerPolicy: 'no-referrer',
+    //   body: JSON.stringify(user)
+    // });
+    // return resp.json();
+  }
 }

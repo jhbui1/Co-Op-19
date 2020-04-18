@@ -9,30 +9,34 @@ import { UserService } from '../user-service';
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent implements OnInit {
-  user : User = new User(0,"","","","",0,"",22.2,11.1);
-
+  
+  user:User = this.resetUser();
   submitted = false;
+  dbUpdateError = false;
 
-  async addUser(user:User): Promise<any> {
-    const body = JSON.stringify(user);
-    console.log(body);
-    const response = await fetch('https://localhost:44382/users',{
-      method:"POST",
-      mode: "cors",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-      body: JSON.stringify(user)
-    });
-    return response.json();
+  setUserPos(pos:Position) {
+    this.user.gpsn = pos.coords.latitude;
+    this.user.gpsw = pos.coords.longitude;
   }
 
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(pos=>this.setUserPos(pos));
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
+  
+  resetUser() : User {
+    let new_user = new User(0,"","","","",0,"",0,0);
+    this.getLocation();
+    return new_user;
+  }
   onSubmit() {
-    // this.userService.addUser(this.user)
-    //   .subscribe();
-    console.log(this.addUser(this.user));
+    this.dbUpdateError = false;
+    this.userService.addUser(this.user)
+      .catch(() => this.dbUpdateError=true);
+    this.user=this.resetUser();
     this.submitted = true;
   }
   constructor(
@@ -40,6 +44,7 @@ export class RegisterFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getLocation();
   }
 
 }
