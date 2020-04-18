@@ -12,6 +12,7 @@ namespace CoOp19.App.Models
     public UsersView(Dtb.Entities.MapData map, Users user)
     {
       Id = user.Id;
+      Loc = user.Loc;
       UserName = user.UserName;
       Password = user.Password;
       Fname = user.Fname;

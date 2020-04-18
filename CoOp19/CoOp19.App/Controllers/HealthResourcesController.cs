@@ -42,5 +42,37 @@ namespace CoOp19.App.Controllers
         return new HealthViewResource(health, gen, map);
       }
     }
+
+    [HttpPost]
+    [ProducesResponseType(201, Type = typeof(HealthViewResource))]
+    [ProducesResponseType(400)]
+    public async Task<ActionResult> PostAsync([FromBody] HealthViewResource health)
+    {
+      using (var context = new DB19Context())
+      {
+        var map = new Dtb.Entities.MapData
+        {
+          Gpsn = health.Gpsn,
+          Gpsw = health.Gpsw,
+          City = health.City,
+          Address = health.Address,
+          State = health.State
+        };
+        var gen = new Dtb.Entities.GenericResource
+        {
+          Loc = map,
+          Name = health.Name,
+          Description = health.Description
+        };
+        await context.HealthResource.AddAsync(new Dtb.Entities.HealthResource
+        {
+          ProvidesTests = health.ProvidesTests,
+          TestPrice = health.TestPrice,
+          Resource = gen
+        });
+        await context.SaveChangesAsync();
+      }
+      return Ok();
+    }
   }
 }
