@@ -35,8 +35,6 @@ namespace CoOp19.App.Models
     public string State { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
-    public DateTime DateModified { get; set; } = DateTime.Now;
-
-    public List<HealthViewResource> ConsumableViewResources { get; set; } = new List<HealthViewResource>();
+    public List<Dtb.Entities.HealthResourceServices> Services { get; set; }
   }
 }

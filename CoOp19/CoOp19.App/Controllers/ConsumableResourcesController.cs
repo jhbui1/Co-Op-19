@@ -32,7 +32,6 @@ namespace CoOp19.App.Controllers
     [HttpGet("{id}")]
     public async Task<ActionResult<ConsumableViewResource>> GetActionAsync(int id)
     {
-      var output = new List<ConsumableViewResource>();
       using (var context = new DB19Context())
       {
         var consume = await context.ConsumableResource.FindAsync(id);
