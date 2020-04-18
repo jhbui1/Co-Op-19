@@ -21,7 +21,7 @@ namespace CoOp19.App.Controllers
           using (var context2 = new DB19Context())
           {
             var gen = await context2.GenericResource.FindAsync(shelt.ResourceId);
-            var map = await context2.MapData.FindAsync(shelt.ResourceId);
+            var map = await context2.MapData.FindAsync(gen.LocId);
             output.Add(new ShelterViewResource(map, shelt,gen));
           }
         }
@@ -36,7 +36,7 @@ namespace CoOp19.App.Controllers
       {
         var shelt = await context.ShelterResource.FindAsync(id);
         var gen = await context.GenericResource.FindAsync(shelt.ResourceId);
-        var map = await context.MapData.FindAsync(shelt.ResourceId);
+        var map = await context.MapData.FindAsync(gen.LocId);
         return new ShelterViewResource(map, shelt, gen);
       }
     }
