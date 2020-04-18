@@ -37,8 +37,5 @@ namespace CoOp19.App.Models
     public string Name { get; set; }
     public string Description { get; set; }
     public string State { get; set; }
-    public DateTime DateModified { get; set; } = DateTime.Now;
-
-    public List<ConsumableViewResource> ConsumableViewResources { get; set; } = new List<ConsumableViewResource>();
   }
 }

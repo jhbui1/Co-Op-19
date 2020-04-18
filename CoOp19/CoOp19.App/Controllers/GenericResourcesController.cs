@@ -33,6 +33,22 @@ namespace CoOp19.App.Controllers
       return output;
     }
 
+    public List<ConsumableResource> GetProducts(int id)
+    {
+      using (var context = new DB19Context())
+      {
+        var output = new List<ConsumableResource>();
+        foreach (var item in context.ConsumableResource)
+        {
+          if (item.ResourceId == id)
+          {
+            output.Add(item);
+          }
+        }
+        return output;
+      }
+    }
+
     [HttpGet("{ID}")]
     public async Task<GenericViewResource> GetHealthResource(int id)
     {
@@ -40,7 +56,9 @@ namespace CoOp19.App.Controllers
       {
         var gen = await context.GenericResource.FindAsync(id);
         var map = await context.MapData.FindAsync(gen.LocId);
-        return new GenericViewResource(map, gen);
+        var output = new GenericViewResource(map, gen);
+        output.ConsumableResources = GetProducts(id);
+        return output;
       }
     }
 
