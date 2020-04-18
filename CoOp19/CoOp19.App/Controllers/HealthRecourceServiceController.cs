@@ -46,7 +46,7 @@ namespace CoOp19.App.Controllers
       }
     }
 
-     [HttpPost]
+        [HttpPost]
     [ProducesResponseType(201, Type = typeof(HealthViewResourceService))]
     [ProducesResponseType(400)]
     public async Task Post([FromBody] HealthViewResourceService serv)
