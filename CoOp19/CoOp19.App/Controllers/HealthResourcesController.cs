@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoOp19.App.Controllers
 {
-  [Route("api/[controller]")]
+  [Route("[controller]")]
   [ApiController]
   public class HealthResourcesController : ControllerBase
   {
@@ -17,7 +17,6 @@ namespace CoOp19.App.Controllers
       var output = new List<HealthViewResource>();
       using (var context = new DB19Context())
       {
-        context.Users.Include("");
         foreach (var health in context.HealthResource)
         {
           using (var context2 = new DB19Context())
