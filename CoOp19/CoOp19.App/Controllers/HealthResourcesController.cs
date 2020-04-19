@@ -1,5 +1,6 @@
 using CoOp19.App.Models;
 using CoOp19.Dtb;
+using CoOp19.Dtb.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -30,6 +31,22 @@ namespace CoOp19.App.Controllers
       return output;
     }
 
+    public List<HealthResourceServices> GetServices(int id)
+    {
+      using (var context = new DB19Context())
+      {
+        var output = new List<HealthResourceServices>();
+        foreach (var item in context.HealthResourceServices)
+        {
+          if (item.RecourceId == id)
+          {
+            output.Add(item);
+          }
+        }
+        return output;
+      }
+    }
+
     [HttpGet("{ID}")]
     public async Task<HealthViewResource> GetHealthResource(int id)
     {
@@ -38,7 +55,9 @@ namespace CoOp19.App.Controllers
         var health = await context.HealthResource.FindAsync(id);
         var gen = await context.GenericResource.FindAsync(health.ResourceId);
         var map = await context.MapData.FindAsync(gen.LocId);
-        return new HealthViewResource(health, gen, map);
+        var output = new HealthViewResource(health, gen, map);
+        output.Services = GetServices(id);
+        return output;
       }
     }
 

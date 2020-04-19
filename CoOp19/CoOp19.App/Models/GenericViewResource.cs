@@ -20,6 +20,7 @@ namespace CoOp19.App.Models
       State = map.State;
       Name = generic.Name;
       Description = generic.Description;
+
     }
 
     public int Id { get; set; }
@@ -31,5 +32,7 @@ namespace CoOp19.App.Models
     public string City { get; set; }
     public string Address { get; set; }
     public string State { get; set; }
+
+    public List<ConsumableResource> ConsumableResources { get; set; }
   }
 }
