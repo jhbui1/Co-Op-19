@@ -74,7 +74,6 @@
         required minlength="4" maxlength="30"
         [(ngModel)]="user.Phone" #phone="ngModel" >
 
-
         <button type="submit" class="btn btn-success" (click)="onSubmit();userForm.resetForm()" [disabled]="!userForm.valid">Submit</button>
     </form>
 </div>

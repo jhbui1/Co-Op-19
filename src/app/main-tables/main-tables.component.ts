@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ResourceService } from '../resource.service';
-import { HealthResource } from '../interfaces/health-resource'
+import { HealthResource } from '../interfaces/health-resource';
+import { ShelterResource } from '../interfaces/shelter-resource';
+import { ConsumableResource } from '../interfaces/consumable-resource';
+
 
 @Component({
   selector: 'app-main-tables',
@@ -11,6 +14,8 @@ import { HealthResource } from '../interfaces/health-resource'
 export class MainTablesComponent implements OnInit {
 
   healthResources : HealthResource[] = [];
+  shelterResources : ShelterResource[] = [];
+  consumableResources : ConsumableResource[] = [];
   headElements = ['ID', 'GPSN', 'GPSW', 'Estimated Cost'];
 
 
@@ -22,8 +27,24 @@ export class MainTablesComponent implements OnInit {
       );
   }
 
+  getConsumableResources() {
+    this.ResourceService.getShelterResources().subscribe(
+      resp=>{this.shelterResources=resp;console.log(this.healthResources)}
+    );
+  }
+  
+  getShelterResources() {
+    this.ResourceService.getConsumableResources().subscribe(
+      resp=>{this.consumableResources=resp;console.log(this.healthResources)}
+    );
+  }
+
   ngOnInit(): void {
     this.getHealthResources();
+    this.getShelterResources();
+    this.getConsumableResources();
   }
+
+
 
 }

@@ -13,5 +13,38 @@
             <td>{{el.estcost}}</td>
           </tr>
         </tbody>
-    </table>    
+    </table> 
+    
+    <table class="table table-hover table-dark">
+      <thead>
+        <tr>
+          <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let el of consumableResources">
+          <th scope="row">{{el.id}}</th>
+          <td>{{el.gpsn}}</td>
+          <td>{{el.gpsw}}</td>
+          <td>{{el.estcost}}</td>
+        </tr>
+      </tbody>
+  </table>
+
+  <table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let el of shelterResources">
+        <th scope="row">{{el.id}}</th>
+        <td>{{el.gpsn}}</td>
+        <td>{{el.gpsw}}</td>
+        <td>{{el.estcost}}</td>
+      </tr>
+    </tbody>
+</table>    
 </div>
+

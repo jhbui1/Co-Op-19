@@ -33,13 +33,11 @@ export class UserService {
     };
   }
   
-  async addUser(user:User): Promise<any> {
+  async addUser(user:User) {
     console.log(user);
     
     return this.http.post<User> (
-      'https://localhost:44382/users',JSON.stringify(user),httpOptions)
-      .subscribe();
-  
+      'https://localhost:44382/users',JSON.stringify(user),httpOptions).toPromise();
     // const resp = await fetch('https://localhost:44382/users',{
     //   method:"POST",
     //   mode: "cors",

@@ -32,13 +32,16 @@ export class RegisterFormComponent implements OnInit {
     this.getLocation();
     return new_user;
   }
+
   onSubmit() {
     this.dbUpdateError = false;
     this.userService.addUser(this.user)
-      .catch(() => this.dbUpdateError=true);
+      .then()
+      .catch(()=>this.dbUpdateError=true);
     this.user=this.resetUser();
     this.submitted = true;
   }
+
   constructor(
     private userService : UserService
   ) { }

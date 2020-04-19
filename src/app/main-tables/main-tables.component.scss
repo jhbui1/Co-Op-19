@@ -1,14 +1,15 @@
 #tables {
     height: 100vh;
     background: url('http://images6.fanpop.com/image/photos/41900000/sunrise-over-usa-the-united-states-from-space-clip-contains-earth-usa-us-sunrise-space-night-light-c-commodore-64-41938037-4096-2304.png') no-repeat center;
-    background-size: 90vw 90vh;
+    background-size: 100vw 100vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 table {
+    margin-bottom: 1vh;
     background-color: rgba(255,255,255,.75);
     width: 75vw;
 }
