@@ -13,6 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './main/main.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { UserService } from './user-service';
+import { AddResourceTypeComponent } from './add-resource-type/add-resource-type.component';
+import { AddResourceFormComponent } from './add-resource-form/add-resource-form.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { UserService } from './user-service';
     RegisterComponent,
     AddResourceComponent,
     MainComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    AddResourceTypeComponent,
+    AddResourceFormComponent
   ],
   imports: [
     BrowserModule,
