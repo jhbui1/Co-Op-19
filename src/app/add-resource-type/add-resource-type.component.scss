@@ -22,6 +22,13 @@
     border: solid white;
     border-width: .5vh .5vh;
     padding:8vw;
+    width: 20vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    font-size:2vh;
 }
 .select:hover {
     cursor: pointer;

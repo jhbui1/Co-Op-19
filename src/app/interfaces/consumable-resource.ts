@@ -10,9 +10,6 @@ export class ConsumableResource {
         public name: string,
         public description: string,
         public state: string,
-        public dateModified: Date,
-        public consumableViewResources: any[],
-        public recName?: any,
-        public price?: any
+        public price?: Number
     ) {}
 }

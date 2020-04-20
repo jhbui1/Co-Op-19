@@ -17,7 +17,8 @@ export class MainTablesComponent implements OnInit {
   shelterResources : ShelterResource[] = [];
   consumableResources : ConsumableResource[] = [];
   headElements = ['ID','Name', 'GPSN', 'GPSW', 'Estimated Cost'];
-
+  consumableHeadElements = ['ID','Name','Quantity', 'GPSN', 'GPSW',];
+  shelterHeadElements = ['ID','Name','Vacancy','Rating', 'GPSN', 'GPSW',];
 
   constructor(private ResourceService:ResourceService) { }
 
@@ -28,14 +29,14 @@ export class MainTablesComponent implements OnInit {
   }
 
   getConsumableResources() {
-    this.ResourceService.getShelterResources().subscribe(
-      resp=>{this.shelterResources=resp;console.log(this.healthResources)}
+    this.ResourceService.getConsumableResources().subscribe(
+      resp=>{this.consumableResources=resp;}
     );
   }
   
   getShelterResources() {
-    this.ResourceService.getConsumableResources().subscribe(
-      resp=>{this.consumableResources=resp;console.log(this.healthResources)}
+    this.ResourceService.getShelterResources().subscribe(
+      resp=>{this.shelterResources=resp;}
     );
   }
 

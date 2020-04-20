@@ -1,4 +1,5 @@
 <div id="add-resourse-form-content">
+    
     <div class="add-resource-form" *ngIf="resourceForm.addHealth">
         <div *ngIf="dbUpdateError" class="alert alert-danger">
             Failed to add resource. Database may be down.
@@ -32,7 +33,7 @@
                     <div *ngIf="testPrice.invalid && (testPrice.dirty || testPrice.touched)"
                     class="alert alert-danger">
                         <div *ngIf="testPrice.errors?.required">
-                        Name is required.
+                        Price is required.
                         </div>
                     </div>
                 </div>
@@ -40,6 +41,8 @@
                 <!-- Service inputs -->
                 <form #serviceForm="ngForm">
                     <div id="addServiceForm" *ngIf="addService">
+
+                        <!-- service name -->
                         <label for="serviceName">Service Name: </label>
                         <input type="text" id="serviceName" name="serviceName" class="form-control"
                         required minlength="4" maxlength="30"
@@ -53,6 +56,8 @@
                                 Name must be at least 4 characters long.
                             </div>
                         </div>
+
+                        <!-- service description -->
                         <label for="serviceDesc">Service Description: </label>
                         <textarea id="serviceDesc" name="serviceDesc" class="form-control"
                         minlength="4" maxlength="500"
@@ -63,28 +68,165 @@
                                 Description must be at least 4 characters long.
                             </div>
                         </div>
-                    </div>
+
+                        <!-- estimated cost -->
+                        <label for="estCost">Estimated Cost: </label>
+                        <input type="number" id="estCost" name="estCost" class="form-control"
+                         min="0"
+                        [(ngModel)]="health.estCost" #estCost="ngModel" >
+                        <div *ngIf="estCost.invalid && (estCost.dirty || estCost.touched)"
+                        class="alert alert-danger">
+                            <div *ngIf="estCost.errors?.min">
+                                Cost must be non-negative
+                            </div>
+                        </div>
+
+                        <!-- Average wait time in hours -->
+                        <label for="avgWaitHours">Average wait time (hours): </label>
+                        <input type="number" id="avgWaitHours" name="avgWaitHours" class="form-control"
+                        min="0"
+                        [(ngModel)]="health.avgWaitHours" #avgWaitHours="ngModel" >
+                        <div *ngIf="avgWaitHours.invalid && (avgWaitHours.dirty || avgWaitHours.touched)"
+                        class="alert alert-danger">
+                            <div *ngIf="avgWaitHours.errors?.min">
+                                Wait time must be non-negative
+                            </div>
+                        </div>
+
+                </div>
                 </form>
                 <button type="submit" class="btn btn-success" (click)="onSubmit();healthForm.resetForm()" [disabled]="!healthForm.valid">Submit</button>
                 <button type="submit" class="btn btn-success" (click)="addHealthService();serviceForm.resetForm()" [disabled]="!healthForm.valid">Add a Service</button>
-       
             </form>
         </div>
-    </div >
-
-    <div class="add-resource-form" *ngIf="resourceForm.addShelter">
-        Shelter
-        Shelter
-        Shelter
-        Shelter
-        Shelter
     </div>
 
     <div class="add-resource-form" *ngIf="resourceForm.addConsumable">
-        consumable
-        consumableconsumableconsumableconsumable
-        consumable
-        consumable
-        consumable
+        <div *ngIf="dbUpdateError" class="alert alert-danger">
+            Failed to add resource. Database may be down.
+        </div>
+        <div class="resource-form-content">
+            <!-- Health resource form -->
+            <form #consumableForm="ngForm">
+                <h2>Add a Consumable Resource</h2>
+
+                <!-- Name -->
+                <label for="Name">Resource name: </label>
+                <input type="text" id="name" name="name" class="form-control"
+                required minlength="4" maxlength="30"
+                [(ngModel)]="consumable.name" #name="ngModel" >
+                <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                class="alert alert-danger">
+                    <div *ngIf="name.errors?.required">
+                        Name is required.
+                    </div>
+                    <div *ngIf="name.errors?.minlength">
+                        Name must be at least 4 characters long.
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <label for="description">Description: </label>
+                <textarea id="description" name="description" class="form-control"
+                minlength="4" maxlength="500"
+                [(ngModel)]="consumable.description" #description="ngModel" ></textarea>
+                <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                class="alert alert-danger">
+                    <div *ngIf="description.errors?.minlength">
+                        Description must be at least 4 characters long.
+                    </div>
+                </div>
+          
+                <!-- Price -->
+                <label for="price">Price: </label>
+                <input type="number" id="price" name="price" class="form-control"
+                min="0"
+                [(ngModel)]="consumable.price" #price="ngModel" >
+                <div *ngIf="price.invalid && (price.dirty || price.touched)"
+                class="alert alert-danger">
+                    <div *ngIf="price.errors?.min">
+                        Price must be non-negative.
+                    </div>
+                </div>
+                
+                <!-- Quantity -->
+                <label for="quantity">Quantity: </label>
+                <input type="number" id="quantity" name="quantity" class="form-control"
+                 min="0"
+                [(ngModel)]="consumable.quantity" #quantity="ngModel" >
+                <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)"
+                class="alert alert-danger">
+                    <div *ngIf="quantity.errors?.min">
+                        Quantity must be non-negative.
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success" (click)="onSubmit();consumableForm.resetForm()" [disabled]="!consumableForm.valid">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="add-resource-form" *ngIf="resourceForm.addShelter">
+        <div *ngIf="dbUpdateError" class="alert alert-danger">
+            Failed to add resource. Database may be down.
+        </div>
+        <div class="resource-form-content">
+            <!-- Health resource form -->
+            <form #shelterForm="ngForm">
+                <h2>Add a shelter Resource</h2>
+
+                <!-- Name -->
+                <label for="Name">Resource name: </label>
+                <input type="text" id="name" name="name" class="form-control"
+                required minlength="4" maxlength="30"
+                [(ngModel)]="shelter.name" #name="ngModel" >
+                <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                class="alert alert-danger">
+                    <div *ngIf="name.errors?.required">
+                        Name is required.
+                    </div>
+                    <div *ngIf="name.errors?.minlength">
+                        Name must be at least 4 characters long.
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <label for="description">Description: </label>
+                <textarea id="description" name="description" class="form-control"
+                minlength="4" maxlength="500"
+                [(ngModel)]="shelter.description" #description="ngModel" ></textarea>
+                <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                class="alert alert-danger">
+                    <div *ngIf="description.errors?.minlength">
+                        Description must be at least 4 characters long.
+                    </div>
+                </div>
+
+                <!-- Vacancy -->
+                <label for="vacancy">Vacancy: </label>
+                <input type="number" id="vacancy" name="vacancy" class="form-control"
+                min="0"
+                [(ngModel)]="shelter.vacancy" #vacancy="ngModel" >
+                <div *ngIf="vacancy.invalid && (vacancy.dirty || vacancy.touched)"
+                class="alert alert-danger">
+                    <div *ngIf="vacancy.errors?.min">
+                        vacancy must be non-negative.
+                    </div>
+                </div>
+
+
+                <!-- Quantity -->
+                <label for="rating">Rating (0-5): </label>
+                <input type="number" id="rating" name="rating" class="form-control"
+                 customMin="0" customMax="5"
+                [(ngModel)]="shelter.rating" #rating="ngModel" >
+                <div *ngIf="rating.invalid && (rating.dirty || rating.touched)"
+                class="alert alert-danger">
+                    <div *ngIf="(rating.errors?.customMin||rating.errors?.customMax)">
+                       Rating must be between 0-5.
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success" (click)="onSubmit();shelterForm.resetForm()" [disabled]="!shelterForm.valid">Submit</button>
+            </form>
+        </div>
     </div>
 </div>

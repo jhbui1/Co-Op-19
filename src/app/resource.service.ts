@@ -15,8 +15,11 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ResourceService {
+
   
-  private url = 'https://localhost:44382/'
+  private url = 'https://db-19.azurewebsites.net/'
+  // private url = 'http://localhost:44382/'
+
   private health_ctrl = 'HealthResources';
   private health_srvc_ctrl = 'HealthRecourceService';
   private consumable_ctrl = 'ConsumableResources';
@@ -42,22 +45,25 @@ export class ResourceService {
       .toPromise();
   }
 
-  // async getHealthID():Promise<number>{
-  //   let rows:HealthResource[] = await this.http.get<HealthResource[]>(this.url+this.health_ctrl,httpOptions)
-  //     .toPromise()
-  //     .then();
-  //   debugger;
-
-  //   return rows[0]?.id;
-  // }
 
   getConsumableResources() {
     return this.http.get<ConsumableResource[]> (
       this.url+this.consumable_ctrl,httpOptions);
   }
 
+  addConsumableResource(consumable: ConsumableResource) {
+    console.log(JSON.stringify(consumable));
+    return this.http.post<ConsumableResource>(this.url+this.consumable_ctrl,JSON.stringify(consumable),httpOptions)
+      .toPromise();
+  }
+
   getShelterResources() {
     return this.http.get<ShelterResource[]> (
       this.url+this.shelter_ctrl,httpOptions);
+  }
+
+  addShelterResource(shelter: ShelterResource) {
+    return this.http.post<ShelterResource>(this.url+this.shelter_ctrl,JSON.stringify(shelter),httpOptions)
+      .toPromise();
   }
 }

@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class UserService {
 
-  private url = 'http://localhost:44382/users';
+  private url = 'https://db-19.azurewebsites.net/users';
 
   constructor(private http:HttpClient) {}
 
@@ -37,7 +37,7 @@ export class UserService {
     console.log(user);
     
     return this.http.post<User> (
-      'https://localhost:44382/users',JSON.stringify(user),httpOptions).toPromise();
+      this.url,JSON.stringify(user),httpOptions).toPromise();
     // const resp = await fetch('https://localhost:44382/users',{
     //   method:"POST",
     //   mode: "cors",

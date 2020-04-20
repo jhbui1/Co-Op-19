@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ConsumableResource } from '../interfaces/consumable-resource';
-import {HealthResource} from '../interfaces/health-resource';
-import {ShelterResource} from '../interfaces/shelter-resource';
+import { HealthResource } from '../interfaces/health-resource';
+import { ShelterResource } from '../interfaces/shelter-resource';
 import { ResourceFormService } from '../resource-form.service';
 import { ResourceService } from '../resource.service';
 
@@ -25,7 +25,7 @@ export class AddResourceFormComponent implements OnInit {
   health : HealthResource  =  new HealthResource(0,0,"","",false,0,0,0,"","","","","",0,0);
   healthService : HealthResource = new HealthResource(0,0,"","",false,0,0,0,"","","","","",0,0);
   shelter : ShelterResource = new ShelterResource(0,0,0,false,0,0,"","","","",""); 
-  consumable : ConsumableResource = new ConsumableResource(0,0,0,0,0,"","","","","",new Date(0),[],"",0);
+  consumable : ConsumableResource = new ConsumableResource(0,1,0,0,0,"","","","","",0);
 
   setUserPos(pos:Position) {
     let long = pos.coords.longitude;
@@ -54,7 +54,6 @@ export class AddResourceFormComponent implements OnInit {
         .then()
         .catch(()=>this.dbUpdateError=true);
     } else { //user has just filled out health resource
-    
       this.resourceServ.addHealthResource(this.health)
         .then(resp=>{
             console.log(resp);
@@ -68,16 +67,20 @@ export class AddResourceFormComponent implements OnInit {
 
   onSubmit() {
     this.dbUpdateError=false;
+    //check which form is active and post corresponding property
     if(this.resourceForm.addConsumable) {
-      ;
-    }
-    else if(this.resourceForm.addShelter) {
-      ;
-    }
-    else if(this.resourceForm.addHealth) {
+      debugger;
+      this.resourceServ.addConsumableResource(this.consumable)
+        .then(()=>console.log("res added"))
+        .catch(()=>this.dbUpdateError=true);
+    } else if(this.resourceForm.addShelter) {
+      this.resourceServ.addShelterResource(this.shelter)
+        .then()
+        .catch(()=>this.dbUpdateError=true);
+    } else if(this.resourceForm.addHealth) {
       this.resourceServ.addHealthResource(this.health)
-          .then()
-          .catch(()=>this.dbUpdateError=true);
+        .then()
+        .catch(()=>this.dbUpdateError=true);
     }
   }
 

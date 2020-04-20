@@ -15,6 +15,8 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { UserService } from './user-service';
 import { AddResourceTypeComponent } from './add-resource-type/add-resource-type.component';
 import { AddResourceFormComponent } from './add-resource-form/add-resource-form.component';
+import { ResourceService } from './resource.service';
+import { ResourceFormService } from './resource-form.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,11 @@ import { AddResourceFormComponent } from './add-resource-form/add-resource-form.
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService],
+  providers: [
+    UserService,
+    ResourceService,
+    ResourceFormService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
