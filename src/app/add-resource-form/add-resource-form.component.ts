@@ -57,6 +57,7 @@ export class AddResourceFormComponent implements OnInit {
     
       this.resourceServ.addHealthResource(this.health)
         .then(resp=>{
+            console.log(resp);
             this.healthID=resp.id
           })
         .catch((err)=>{console.log(err);this.dbUpdateError=true});

@@ -3,7 +3,6 @@
         <div *ngIf="dbUpdateError" class="alert alert-danger">
             Failed to add resource. Database may be down.
         </div>
-
         <div class="resource-form-content">
             <!-- Health resource form -->
             <form #healthForm="ngForm">
@@ -40,7 +39,7 @@
                 
                 <!-- Service inputs -->
                 <form #serviceForm="ngForm">
-                    <div *ngIf="addService">
+                    <div id="addServiceForm" *ngIf="addService">
                         <label for="serviceName">Service Name: </label>
                         <input type="text" id="serviceName" name="serviceName" class="form-control"
                         required minlength="4" maxlength="30"

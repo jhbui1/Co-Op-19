@@ -17,7 +17,16 @@ form {
     input[type="checkbox"] {
         align-self: flex-start;
     }
+    form {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background: none;
 
+        #addServiceForm {
+            width: 80%;
+        }
+    }
     button {
         margin-top: 1vh;
         margin-right: 1vw;
