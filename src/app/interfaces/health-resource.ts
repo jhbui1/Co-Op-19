@@ -13,7 +13,7 @@ export class HealthResource {
         public state: string,
         public name: string,
         public description: string,
-        public testPrice?: any,
-        public avgWaitHours?: any
+        public testPrice?: number,
+        public avgWaitHours?: number
     ) {}
 }

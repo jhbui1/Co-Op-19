@@ -5,26 +5,26 @@
         </div>
 
         <div class="resource-form-content">
+            <!-- Health resource form -->
             <form #healthForm="ngForm">
                 <h2>Add a Health Resource</h2>
-                <label for="serviceName">Resource name: </label>
-                <input type="text" id="serviceName" name="serviceName" class="form-control"
+                <label for="Name">Resource name: </label>
+                <input type="text" id="name" name="name" class="form-control"
                 required minlength="4" maxlength="30"
-                [(ngModel)]="health.serviceName" #serviceName="ngModel" >
-                <div *ngIf="serviceName.invalid && (serviceName.dirty || serviceName.touched)"
+                [(ngModel)]="health.name" #name="ngModel" >
+                <div *ngIf="name.invalid && (name.dirty || name.touched)"
                 class="alert alert-danger">
-                    <div *ngIf="serviceName.errors?.required">
+                    <div *ngIf="name.errors?.required">
                     Name is required.
                     </div>
-                    <div *ngIf="serviceName.errors?.minlength">
+                    <div *ngIf="name.errors?.minlength">
                     Name must be at least 4 characters long.
                     </div>
                 </div>
                 
-                <label for="providesTests">Provides Tests?</label>
+                <label for="providesTests">Does this location provide tests?</label>
                 <input type="checkbox" id="providesTests" name="providesTests" class="form-control" 
                 [(ngModel)]="health.providesTests" #providesTests="ngModel" ng-init="checked=false">
-
                 <div *ngIf="health.providesTests">
                     <label for="testPrice">Test Price: </label>
                     <input type="number" id="testPrice" name="testPrice" class="form-control"
@@ -37,8 +37,38 @@
                         </div>
                     </div>
                 </div>
-
+                
+                <!-- Service inputs -->
+                <form #serviceForm="ngForm">
+                    <div *ngIf="addService">
+                        <label for="serviceName">Service Name: </label>
+                        <input type="text" id="serviceName" name="serviceName" class="form-control"
+                        required minlength="4" maxlength="30"
+                        [(ngModel)]="healthService.serviceName" #serviceName="ngModel" >
+                        <div *ngIf="serviceName.invalid && (serviceName.dirty || serviceName.touched)"
+                        class="alert alert-danger">
+                            <div *ngIf="serviceName.errors?.required">
+                                Name is required.
+                            </div>
+                            <div *ngIf="serviceName.errors?.minlength">
+                                Name must be at least 4 characters long.
+                            </div>
+                        </div>
+                        <label for="serviceDesc">Service Description: </label>
+                        <textarea id="serviceDesc" name="serviceDesc" class="form-control"
+                        minlength="4" maxlength="500"
+                        [(ngModel)]="healthService.serviceDesc" #serviceDesc="ngModel" ></textarea>
+                        <div *ngIf="serviceDesc.invalid && (serviceDesc.dirty || serviceDesc.touched)"
+                        class="alert alert-danger">
+                            <div *ngIf="serviceDesc.errors?.minlength">
+                                Description must be at least 4 characters long.
+                            </div>
+                        </div>
+                    </div>
+                </form>
                 <button type="submit" class="btn btn-success" (click)="onSubmit();healthForm.resetForm()" [disabled]="!healthForm.valid">Submit</button>
+                <button type="submit" class="btn btn-success" (click)="addHealthService();serviceForm.resetForm()" [disabled]="!healthForm.valid">Add a Service</button>
+       
             </form>
         </div>
     </div >

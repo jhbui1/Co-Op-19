@@ -5,7 +5,6 @@ import {HealthResource} from '../interfaces/health-resource';
 import {ShelterResource} from '../interfaces/shelter-resource';
 import { ResourceFormService } from '../resource-form.service';
 import { ResourceService } from '../resource.service';
-import { HealthService } from '../interfaces/health-service';
 
 @Component({
   selector: 'app-add-resource-form',
@@ -19,9 +18,12 @@ export class AddResourceFormComponent implements OnInit {
     private resourceServ: ResourceService
     ) {}
 
-  dbUpdateError: boolean = false;
-  health : HealthResource  = new HealthResource(0,0,"","",false,0,0,0,"","","","","","","");
-  healthService : HealthService = new HealthResource(0,0,"","",false,0,0,0,"","","","","","","");
+  dbUpdateError : boolean = false;
+  addService : boolean = false;
+  healthID : number = -1;
+
+  health : HealthResource  =  new HealthResource(0,0,"","",false,0,0,0,"","","","","",0,0);
+  healthService : HealthResource = new HealthResource(0,0,"","",false,0,0,0,"","","","","",0,0);
   shelter : ShelterResource = new ShelterResource(0,0,0,false,0,0,"","","","",""); 
   consumable : ConsumableResource = new ConsumableResource(0,0,0,0,0,"","","","","",new Date(0),[],"",0);
 
@@ -42,6 +44,25 @@ export class AddResourceFormComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getLocation();
+  }
+
+  addHealthService() {
+    if(this.addService) { //user has previously clicked add service, should now attempt to submit service
+      debugger;
+      this.healthService.resourceId = this.healthID;
+      this.resourceServ.addHealthService(this.healthService)
+        .then()
+        .catch(()=>this.dbUpdateError=true);
+    } else { //user has just filled out health resource
+    
+      this.resourceServ.addHealthResource(this.health)
+        .then(resp=>{
+            this.healthID=resp.id
+          })
+        .catch((err)=>{console.log(err);this.dbUpdateError=true});
+      //get id of added resource
+    }
+    this.addService = true;
   }
 
   onSubmit() {
