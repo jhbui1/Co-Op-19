@@ -1,1 +1,61 @@
-<p>add-resource-form works!</p>
+<div id="add-resourse-form-content">
+    <div class="add-resource-form" *ngIf="resourceForm.addHealth">
+        <div *ngIf="dbUpdateError" class="alert alert-danger">
+            Failed to add resource. Database may be down.
+        </div>
+
+        <div class="resource-form-content">
+            <form #healthForm="ngForm">
+                <h2>Add a Health Resource</h2>
+                <label for="serviceName">Resource name: </label>
+                <input type="text" id="serviceName" name="serviceName" class="form-control"
+                required minlength="4" maxlength="30"
+                [(ngModel)]="health.serviceName" #serviceName="ngModel" >
+                <div *ngIf="serviceName.invalid && (serviceName.dirty || serviceName.touched)"
+                class="alert alert-danger">
+                    <div *ngIf="serviceName.errors?.required">
+                    Name is required.
+                    </div>
+                    <div *ngIf="serviceName.errors?.minlength">
+                    Name must be at least 4 characters long.
+                    </div>
+                </div>
+                
+                <label for="providesTests">Provides Tests?</label>
+                <input type="checkbox" id="providesTests" name="providesTests" class="form-control" 
+                [(ngModel)]="health.providesTests" #providesTests="ngModel" ng-init="checked=false">
+
+                <div *ngIf="health.providesTests">
+                    <label for="testPrice">Test Price: </label>
+                    <input type="number" id="testPrice" name="testPrice" class="form-control"
+                    required min=0
+                    [(ngModel)]="health.testPrice" #testPrice="ngModel" >
+                    <div *ngIf="testPrice.invalid && (testPrice.dirty || testPrice.touched)"
+                    class="alert alert-danger">
+                        <div *ngIf="testPrice.errors?.required">
+                        Name is required.
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success" (click)="onSubmit();healthForm.resetForm()" [disabled]="!healthForm.valid">Submit</button>
+            </form>
+        </div>
+    </div >
+
+    <div class="add-resource-form" *ngIf="resourceForm.addShelter">
+        Shelter
+        Shelter
+        Shelter
+        Shelter
+        Shelter
+    </div>
+
+    <div class="add-resource-form" *ngIf="resourceForm.addConsumable">
+        consumable
+        consumableconsumableconsumableconsumable
+        consumable
+        consumable
+        consumable
+    </div>
+</div>

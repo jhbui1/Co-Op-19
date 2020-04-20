@@ -16,7 +16,7 @@ export class MainTablesComponent implements OnInit {
   healthResources : HealthResource[] = [];
   shelterResources : ShelterResource[] = [];
   consumableResources : ConsumableResource[] = [];
-  headElements = ['ID', 'GPSN', 'GPSW', 'Estimated Cost'];
+  headElements = ['ID','Name', 'GPSN', 'GPSW', 'Estimated Cost'];
 
 
   constructor(private ResourceService:ResourceService) { }

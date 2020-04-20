@@ -10,9 +10,11 @@
         <tbody>
           <tr *ngFor="let el of healthResources">
             <th scope="row">{{el.id}}</th>
+            <td>{{el.name}}</td>
             <td>{{el.gpsn}}</td>
             <td>{{el.gpsw}}</td>
-            <td>{{el.estcost}}</td>
+            <td>{{el.testPrice}}</td>
+            
           </tr>
         </tbody>
     </table> 
