@@ -45,7 +45,7 @@ create table HealthResource(
 
 CREATE TABLE HealthResourceServices(
   ID INT IDENTITY PRIMARY KEY,
-  HealthRes INT IDENTITY FOREIGN KEY REFERENCES HealthResource(id) not null,
+  HealthRes INT FOREIGN KEY REFERENCES HealthResource(id) not null,
   ServiceName VARCHAR(50) NOT NULL,
   ServiceDesc VARCHAR(50) NOT NULL,
   AvgWaitHours INT,
