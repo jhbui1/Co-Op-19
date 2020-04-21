@@ -28,9 +28,22 @@ export class ResourceService {
 
   constructor(private http:HttpClient) { }
 
-  getHealthResources() {
+ 
+
+  buildRadiusQuery(gpsn:number,gpsw:number,radius?:number): string {
+    let res: string = `/${gpsn}/${gpsw}/`;
+    if(radius) {
+      res+= radius;
+    } else {
+      res+="0.5";
+    }
+    return res;
+  }
+
+  getHealthResources(gpsn:number,gpsw:number,radius?:number) {
+    let radius_query = this.buildRadiusQuery(gpsn,gpsw,radius);
     return this.http.get<HealthResource[]> (
-      this.url+this.health_ctrl,httpOptions);
+      this.url+this.health_ctrl+radius_query,httpOptions);
   }
 
   addHealthResource(res:HealthResource) {
@@ -46,9 +59,10 @@ export class ResourceService {
   }
 
 
-  getConsumableResources() {
+  getConsumableResources(gpsn:number,gpsw:number,radius?:number) {
+    let radius_query = this.buildRadiusQuery(gpsn,gpsw,radius);
     return this.http.get<ConsumableResource[]> (
-      this.url+this.consumable_ctrl,httpOptions);
+      this.url+this.consumable_ctrl+radius_query,httpOptions);
   }
 
   addConsumableResource(consumable: ConsumableResource) {
@@ -57,9 +71,10 @@ export class ResourceService {
       .toPromise();
   }
 
-  getShelterResources() {
+  getShelterResources(gpsn:number,gpsw:number,radius?:number) {
+    let radius_query = this.buildRadiusQuery(gpsn,gpsw,radius);
     return this.http.get<ShelterResource[]> (
-      this.url+this.shelter_ctrl,httpOptions);
+      this.url+this.shelter_ctrl+radius_query,httpOptions);
   }
 
   addShelterResource(shelter: ShelterResource) {

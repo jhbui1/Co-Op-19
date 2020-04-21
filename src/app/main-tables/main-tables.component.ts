@@ -12,38 +12,64 @@ import { ConsumableResource } from '../interfaces/consumable-resource';
   styleUrls: ['./main-tables.component.scss']
 })
 export class MainTablesComponent implements OnInit {
-
+  searchRadius : number | undefined;
+  gpsn: number = 0;
+  gpsw: number = 0;
   healthResources : HealthResource[] = [];
   shelterResources : ShelterResource[] = [];
   consumableResources : ConsumableResource[] = [];
   headElements = ['ID','Name', 'GPSN', 'GPSW', 'Estimated Cost'];
-  consumableHeadElements = ['ID','Name','Quantity', 'GPSN', 'GPSW',];
+  consumableHeadElements = ['ID','Name','Price','Quantity', 'GPSN', 'GPSW',];
   shelterHeadElements = ['ID','Name','Vacancy','Rating', 'GPSN', 'GPSW',];
 
   constructor(private ResourceService:ResourceService) { }
 
+  resetTables() {
+    this.getHealthResources();
+    this.getHealthResources();
+    this.getShelterResources();
+    this.getConsumableResources();
+  }
+
+  updateSearch() {
+    
+  }
+
   getHealthResources() {
-    this.ResourceService.getHealthResources().subscribe(
+    this.ResourceService.getHealthResources(this.gpsn,this.gpsw,this.searchRadius).subscribe(
         resp=>{this.healthResources=resp;console.log(this.healthResources)}
       );
   }
 
   getConsumableResources() {
-    this.ResourceService.getConsumableResources().subscribe(
+    this.ResourceService.getConsumableResources(this.gpsn,this.gpsw,this.searchRadius).subscribe(
       resp=>{this.consumableResources=resp;}
     );
   }
   
   getShelterResources() {
-    this.ResourceService.getShelterResources().subscribe(
+    this.ResourceService.getShelterResources(this.gpsn,this.gpsw,this.searchRadius).subscribe(
       resp=>{this.shelterResources=resp;}
     );
   }
 
+  setUserPos(pos:Position) {
+    this.gpsn = pos.coords.latitude;
+    this.gpsw = pos.coords.longitude;
+  }
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(pos=>{
+        this.setUserPos(pos);
+        this.resetTables();
+      });
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+  }
   ngOnInit(): void {
-    this.getHealthResources();
-    this.getShelterResources();
-    this.getConsumableResources();
+    this.getLocation();
+   
   }
 
 

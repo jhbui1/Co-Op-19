@@ -19,6 +19,7 @@ export class AddResourceFormComponent implements OnInit {
     ) {}
 
   dbUpdateError : boolean = false;
+  addCoords : boolean = false;
   addService : boolean = false;
   healthID : number = -1;
 
@@ -42,6 +43,7 @@ export class AddResourceFormComponent implements OnInit {
       console.log("Geolocation is not supported by this browser.");
     }
   }
+  
   ngOnInit(): void {
     this.getLocation();
   }

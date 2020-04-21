@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import {ResourceFormService} from '../resource-form.service';
+import { ResourceFormService } from '../resource-form.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-add-resource-type',
