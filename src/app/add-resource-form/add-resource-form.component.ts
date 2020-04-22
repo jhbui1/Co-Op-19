@@ -37,8 +37,8 @@ export class AddResourceFormComponent implements OnInit {
   addService : boolean = false;
   healthID : number = -1;
 
-  health : HealthResource  =  new HealthResource(0,0,"","",false,0,0,0,"","","","","",0,0);
-  healthService : HealthResource = new HealthResource(0,0,"","",false,0,0,0,"","","","","",0,0);
+  health : HealthResource  =  new HealthResource(0,0,"","",false,0,0,0,"","","","","",[],0);
+  healthService : HealthResource = new HealthResource(0,0,"","",false,0,0,0,"","","","","",[],0);
   shelter : ShelterResource = new ShelterResource(0,0,0,false,0,0,"","","","",""); 
   consumable : ConsumableResource = new ConsumableResource(0,1,0,0,0,"","","","","",0);
   clickedMarker(label: string, index: number) {

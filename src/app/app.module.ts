@@ -20,6 +20,7 @@ import { ResourceService } from './resource.service';
 import { ResourceFormService } from './resource-form.service';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { HealthDetailComponent } from './health-detail/health-detail.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AddResourceTypeComponent,
     AddResourceFormComponent,
     UserLoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HealthDetailComponent
   ],
   imports: [
     BrowserModule,

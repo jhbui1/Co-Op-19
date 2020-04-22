@@ -40,6 +40,12 @@ export class ResourceService {
     return res;
   }
 
+  getHealthResource(id:number|null) {
+    return this.http.get<HealthResource> (
+      this.url+this.health_ctrl+`/${id}`,httpOptions);
+  }
+
+
   getHealthResources(gpsn:number,gpsw:number,radius?:number) {
     let radius_query = this.buildRadiusQuery(gpsn,gpsw,radius);
     return this.http.get<HealthResource[]> (

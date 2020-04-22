@@ -1,3 +1,5 @@
+import { HealthService } from './health-service'
+
 export class HealthResource {
     constructor (
         public id: number,
@@ -13,6 +15,7 @@ export class HealthResource {
         public state: string,
         public name: string,
         public description: string,
+        public services: HealthService[],
         public testPrice?: number,
         public avgWaitHours?: number
     ) {}

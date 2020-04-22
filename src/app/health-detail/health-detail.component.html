@@ -1,0 +1,34 @@
+<div id="health-detail-container">
+  <h3 class="table-headers">HEALTH RESOURCE {{this.name}} ID: {{this.id}}</h3>
+  <table class="table table-hover table-dark">
+      <thead>
+        <tr>
+          <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let el of healthResource">
+          <th scope="row">{{el.id}}</th>
+          <td>{{el.name}}</td>
+          <td>{{el.gpsn}}</td>
+          <td>{{el.gpsw}}</td>
+          <td>{{el.testPrice}}</td>
+        </tr>
+      </tbody>
+  </table> 
+  <table class="table table-hover table-dark">
+      <thead>
+        <tr>
+          <th *ngFor="let servHead of servHeadElements" scope="col">{{servHead}} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let el of healthServices">
+          <th scope="row">{{el.serviceName}}</th>
+          <td>{{el.serviceDesc}}</td>
+          <td>{{el.avgWaitHours}}</td>
+          <td>{{el.estCost}}</td>
+        </tr>
+      </tbody>
+  </table> 
+</div>
