@@ -1,8 +1,9 @@
-#register-form {
+#user-login-container {
     height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     margin-top:1vh;
     background: #0F2027;  /* fallback for old browsers */
@@ -10,9 +11,19 @@
     background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-app-register-form {
+#user-login-content {
+    width:25vw;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
+}
+
+
+label, h2{
+    color: white;
+}
+
+button {
+    margin-top:2vh;
 }

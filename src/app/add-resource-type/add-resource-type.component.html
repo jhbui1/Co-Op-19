@@ -1,6 +1,8 @@
 <div id="add-resource-options-content">
     <!-- TODO  statistics/logo-->
-
+    <div *ngIf="logInError"class="alert alert-danger">
+        Please log in.
+    </div>
     <div id="add-resource-options-selectors">
         <div class="select add-res" (click)="addConsumable()">
             ADD CONSUMABLE

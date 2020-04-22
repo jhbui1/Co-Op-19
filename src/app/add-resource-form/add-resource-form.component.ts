@@ -6,6 +6,7 @@ import { HealthResource } from '../interfaces/health-resource';
 import { ShelterResource } from '../interfaces/shelter-resource';
 import { ResourceFormService } from '../resource-form.service';
 import { ResourceService } from '../resource.service';
+import { UserService } from '../user-service';
 
 
 interface marker {
@@ -23,7 +24,8 @@ interface marker {
 export class AddResourceFormComponent implements OnInit {
 
   constructor(
-    public resourceForm:ResourceFormService,
+    public resourceForm: ResourceFormService,
+    private userServ: UserService,
     private resourceServ: ResourceService
   ) {}
 
@@ -101,7 +103,7 @@ export class AddResourceFormComponent implements OnInit {
   onSubmit() {
     this.dbUpdateError=false;
     //check which form is active and post corresponding property
-    if(this.resourceForm.addConsumable) {
+    if(this.resourceForm.addConsumable && this.userServ.loggedIn) {
       debugger;
       this.resourceServ.addConsumableResource(this.consumable)
         .then(()=>console.log("res added"))
@@ -114,7 +116,7 @@ export class AddResourceFormComponent implements OnInit {
       this.resourceServ.addHealthResource(this.health)
         .then()
         .catch(()=>this.dbUpdateError=true);
-    }
+    } 
   }
 
   

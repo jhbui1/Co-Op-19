@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ResourceFormService } from '../resource-form.service';
-import { LoginService } from '../login.service';
+import { UserService } from '../user-service';
 
 @Component({
   selector: 'app-add-resource-type',
@@ -11,30 +11,49 @@ import { LoginService } from '../login.service';
 
 export class AddResourceTypeComponent implements OnInit {
 
-  constructor(private resourceForm:ResourceFormService) { }
+  logInError : boolean = false;
+
+  constructor(private resourceForm:ResourceFormService,
+              private userService:UserService    
+    ) { }
 
   ngOnInit(): void {
   }
 
-  
+  checkLogin() {
+    if(!this.userService.loggedIn) {
+      this.logInError=true;
+      return false;
+    }
+    return true;
+  }
 
   scrollToResForm() {
     let target = document.getElementById("add-resourse-form-content");
-    
     target?.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
   }
 
   addHealth() {
-    this.resourceForm.AddHealth();
-    this.scrollToResForm();
+    if(this.checkLogin()){
+      this.resourceForm.AddHealth();
+      this.scrollToResForm();
+    }
+    
   }
+
   addConsumable() {
-    this.resourceForm.AddConsumable();
-    this.scrollToResForm();
+    if(this.checkLogin()){
+      this.resourceForm.AddConsumable();
+      this.scrollToResForm();
+    }
+
   }
+  
   addShelter() {
-    this.resourceForm.AddShelter();
-    this.scrollToResForm();
+    if(this.checkLogin()){
+      this.resourceForm.AddShelter();
+      this.scrollToResForm();
+    }
   }
 
 }
