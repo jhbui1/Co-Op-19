@@ -1,12 +1,45 @@
 <div id="add-resourse-form-content">
+    <div id="add-resource-form-map">
+        <agm-map 
+        [latitude]="gpsn"
+        [longitude]="gpsw"
+        [zoom]="zoom"
+        [disableDefaultUI]="false"
+        [zoomControl]="false"
+        (mapClick)="mapClicked($event)">
     
+        <agm-marker 
+            *ngFor="let m of markers; let i = index"
+            (markerClick)="clickedMarker(m.label, i)"
+            [latitude]="m.gpsn"
+            [longitude]="m.gpsw"
+            [label]="m.label"
+            [markerDraggable]="m.draggable"
+            (dragEnd)="markerDragEnd(m, $event)">
+            
+        <agm-info-window>
+            <strong>InfoWindow content</strong>
+        </agm-info-window>
+        
+        </agm-marker>
+        
+        <agm-circle [latitude]="gpsn + 0.3" [longitude]="gpsw" 
+            [radius]="5000"
+            [fillColor]="'red'"
+            [circleDraggable]="true"
+            [editable]="true">
+        </agm-circle>
+
+        </agm-map> 
+        <p id="coords">Adding resources to coordinates ({{gpsn}},{{gpsw}})</p>
+    </div>
     <div class="add-resource-form" *ngIf="resourceForm.addHealth">
         <div *ngIf="dbUpdateError" class="alert alert-danger">
             Failed to add resource. Database may be down.
         </div>
         <div class="resource-form-content">
             <!-- Health resource form -->
-            <form #healthForm="ngForm">
+            <form #healthForm="ngForm" >
                 <h2>Add a Health Resource</h2>
                 <label for="Name">Resource name: </label>
                 <input type="text" id="name" name="name" class="form-control"
@@ -28,7 +61,7 @@
                 <div *ngIf="health.providesTests">
                     <label for="testPrice">Test Price: </label>
                     <input type="number" id="testPrice" name="testPrice" class="form-control"
-                    required min=0
+                    required min="0" 
                     [(ngModel)]="health.testPrice" #testPrice="ngModel" >
                     <div *ngIf="testPrice.invalid && (testPrice.dirty || testPrice.touched)"
                     class="alert alert-danger">
@@ -41,7 +74,7 @@
            
                 <label for="testPrice">Latitude: </label>
                 <input type="number" id="gpsn" name="gpsn" class="form-control"
-                required min=0
+                required min="0"
                 [(ngModel)]="health.gpsn" #gpsn="ngModel" >
                 <div *ngIf="gpsn.invalid && (gpsn.dirty || gpsn.touched)"
                 class="alert alert-danger">

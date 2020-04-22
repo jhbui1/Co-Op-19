@@ -5,6 +5,12 @@ import { HealthResource } from '../interfaces/health-resource';
 import { ShelterResource } from '../interfaces/shelter-resource';
 import { ConsumableResource } from '../interfaces/consumable-resource';
 
+interface marker {
+  lat: number;
+  lng: number;
+  label?: string;
+  draggable: boolean;
+}
 
 @Component({
   selector: 'app-main-tables',
@@ -12,9 +18,12 @@ import { ConsumableResource } from '../interfaces/consumable-resource';
   styleUrls: ['./main-tables.component.scss']
 })
 export class MainTablesComponent implements OnInit {
+
+  
   searchRadius : number | undefined;
   gpsn: number = 0;
   gpsw: number = 0;
+  zoom: number = 8;
   healthResources : HealthResource[] = [];
   shelterResources : ShelterResource[] = [];
   consumableResources : ConsumableResource[] = [];
@@ -24,15 +33,28 @@ export class MainTablesComponent implements OnInit {
 
   constructor(private ResourceService:ResourceService) { }
 
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker: ${label || index}`)
+  }
+  
+  mapClicked($event: any) {
+    this.gpsw=$event.coords.lng;
+    this.gpsn=$event.coords.lat;
+    this.resetTables();
+  }
+  
+  markerDragEnd(m: marker, $event: MouseEvent) {
+    console.log('dragEnd', m, $event);
+  }
+
+  markers: marker[] = []
+	  
+
   resetTables() {
     this.getHealthResources();
     this.getHealthResources();
     this.getShelterResources();
     this.getConsumableResources();
-  }
-
-  updateSearch() {
-    
   }
 
   getHealthResources() {

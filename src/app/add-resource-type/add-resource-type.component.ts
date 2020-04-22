@@ -8,12 +8,15 @@ import { LoginService } from '../login.service';
   templateUrl: './add-resource-type.component.html',
   styleUrls: ['./add-resource-type.component.scss']
 })
+
 export class AddResourceTypeComponent implements OnInit {
 
   constructor(private resourceForm:ResourceFormService) { }
 
   ngOnInit(): void {
   }
+
+  
 
   scrollToResForm() {
     let target = document.getElementById("add-resourse-form-content");

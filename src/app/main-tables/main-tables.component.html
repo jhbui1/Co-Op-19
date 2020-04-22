@@ -1,8 +1,39 @@
 <div id="tables">
-    <input type="number" placeholder="Search Radius" id="searchRadius" name="searchRadius" class="form-control"
+    <agm-map 
+    [latitude]="gpsn"
+    [longitude]="gpsw"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="false"
+    (mapClick)="mapClicked($event)">
+
+    <agm-marker 
+        *ngFor="let m of markers; let i = index"
+        (markerClick)="clickedMarker(m.label, i)"
+        [latitude]="m.gpsn"
+        [longitude]="m.gpsw"
+        [label]="m.label"
+        [markerDraggable]="m.draggable"
+        (dragEnd)="markerDragEnd(m, $event)">
+        
+      <agm-info-window>
+        <strong>InfoWindow content</strong>
+      </agm-info-window>
+      
+    </agm-marker>
+    
+    <agm-circle [latitude]="gpsn + 0.3" [longitude]="gpsw" 
+        [radius]="5000"
+        [fillColor]="'red'"
+        [circleDraggable]="true"
+        [editable]="true">
+    </agm-circle>
+
+    </agm-map>  
+    <input type="number" placeholder="Search Radius" id="radius" name="radius" class="form-control"
     required customMin="0"
-    [ngModel]="searchRadius" #searchRadius="ngModel">
-    <button class="btn btn-success" (click)="updateSearch()">Update Search Radius</button>
+    [(ngModel)]="searchRadius" #radius="ngModel">
+    <button class="btn btn-success" (click)="resetTables()">Update Search Radius</button>
     <h3 class="table-headers">HEALTH RESOURCES</h3>
     <table class="table table-hover table-dark">
         <thead>

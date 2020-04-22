@@ -1,10 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from "@angular/forms";
 
 import { ConsumableResource } from '../interfaces/consumable-resource';
 import { HealthResource } from '../interfaces/health-resource';
 import { ShelterResource } from '../interfaces/shelter-resource';
 import { ResourceFormService } from '../resource-form.service';
 import { ResourceService } from '../resource.service';
+
+
+interface marker {
+  lat: number;
+  lng: number;
+  label?: string;
+  draggable: boolean;
+}
 
 @Component({
   selector: 'app-add-resource-form',
@@ -16,8 +25,11 @@ export class AddResourceFormComponent implements OnInit {
   constructor(
     public resourceForm:ResourceFormService,
     private resourceServ: ResourceService
-    ) {}
+  ) {}
 
+  gpsn: number = 0;
+  gpsw: number = 0;
+  zoom: number = 8;
   dbUpdateError : boolean = false;
   addCoords : boolean = false;
   addService : boolean = false;
@@ -27,13 +39,20 @@ export class AddResourceFormComponent implements OnInit {
   healthService : HealthResource = new HealthResource(0,0,"","",false,0,0,0,"","","","","",0,0);
   shelter : ShelterResource = new ShelterResource(0,0,0,false,0,0,"","","","",""); 
   consumable : ConsumableResource = new ConsumableResource(0,1,0,0,0,"","","","","",0);
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker: ${label || index}`)
+  }
+
+  updateObjLocs() {
+    this.health.gpsn=this.gpsn;this.health.gpsw=this.gpsw;
+    this.shelter.gpsn=this.gpsn;this.shelter.gpsw=this.gpsw;
+    this.consumable.gpsn=this.gpsn;this.consumable.gpsw=this.gpsw;
+  }
 
   setUserPos(pos:Position) {
-    let long = pos.coords.longitude;
-    let lat = pos.coords.latitude
-    this.health.gpsn=lat;this.health.gpsw=long;
-    this.shelter.gpsn=lat;this.health.gpsw=long;
-    this.consumable.gpsn=lat;this.consumable.gpsw=long;
+    this.gpsw = pos.coords.longitude;
+    this.gpsn = pos.coords.latitude;
+    this.updateObjLocs();
   }
 
   getLocation() {
@@ -44,6 +63,18 @@ export class AddResourceFormComponent implements OnInit {
     }
   }
   
+  mapClicked($event: any) {
+    this.gpsw = $event.coords.lng;
+    this.gpsn = $event.coords.lat;
+    this.updateObjLocs();
+  }
+  
+  markerDragEnd(m: marker, $event: MouseEvent) {
+    console.log('dragEnd', m, $event);
+  }
+
+  markers: marker[] = []
+
   ngOnInit(): void {
     this.getLocation();
   }
