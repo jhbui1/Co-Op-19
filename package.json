@@ -6,7 +6,7 @@
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "build-prod": "ng build --prod",
-    "test": "ng test --code-coverage --browsers=Chrome --reporters=progress,junit",
+    "test": "ng test --code-coverage --watch=false --browsers=Chrome --reporters=progress,junit",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
