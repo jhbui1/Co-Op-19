@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { AddResourceFormComponent } from './add-resource-form.component';
 
 describe('AddResourceFormComponent', () => {
   let component: AddResourceFormComponent;
-  let fixture: ComponentFixture<AddResourceFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -14,12 +14,15 @@ describe('AddResourceFormComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddResourceFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      declarations: [ AddResourceFormComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [AddResourceFormComponent]
+    }).compileComponents();
   });
 
   it('should create', () => {
+    component = TestBed.get(AddResourceFormComponent);
     expect(component).toBeTruthy();
   });
 });

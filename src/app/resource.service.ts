@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpHeaders } from '@angular/common/http';
 
 import {HealthResource} from './interfaces/health-resource';
 import {ConsumableResource} from './interfaces/consumable-resource';

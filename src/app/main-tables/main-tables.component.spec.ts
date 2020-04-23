@@ -1,25 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MainTablesComponent } from './main-tables.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('MainTablesComponent', () => {
-  let component: MainTablesComponent;
-  let fixture: ComponentFixture<MainTablesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MainTablesComponent ]
+      declarations: [ MainTablesComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [MainTablesComponent] 
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MainTablesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      declarations: [ MainTablesComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [MainTablesComponent] 
+    })
+    .compileComponents();
   });
 
   it('should create', () => {
+    const component:MainTablesComponent=TestBed.get(MainTablesComponent)
     expect(component).toBeTruthy();
   });
 });

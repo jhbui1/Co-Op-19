@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
@@ -50,7 +50,8 @@ import { HealthDetailComponent } from './health-detail/health-detail.component';
   providers: [
     UserService,
     ResourceService,
-    ResourceFormService
+    ResourceFormService,
+    HttpClientModule
   ],
   bootstrap: [AppComponent]
 })

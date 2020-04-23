@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { HealthDetailComponent } from './health-detail.component';
 
@@ -8,18 +10,22 @@ describe('HealthDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HealthDetailComponent ]
-    })
-    .compileComponents();
+      declarations: [ HealthDetailComponent ],
+      imports: [HttpClientTestingModule,RouterTestingModule],
+      providers: [HealthDetailComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HealthDetailComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      declarations: [ HealthDetailComponent ],
+      imports: [HttpClientTestingModule,RouterTestingModule],
+      providers: [HealthDetailComponent]
+    }).compileComponents();
   });
 
   it('should create', () => {
+    component = TestBed.get(HealthDetailComponent);
     expect(component).toBeTruthy();
   });
 });

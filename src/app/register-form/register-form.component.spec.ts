@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { RegisterFormComponent } from './register-form.component';
 
@@ -8,18 +9,23 @@ describe('RegisterFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterFormComponent ]
+      declarations: [ RegisterFormComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [RegisterFormComponent]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterFormComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      declarations: [ RegisterFormComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [RegisterFormComponent]
+    }).compileComponents();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const comp:RegisterFormComponent=TestBed.get(RegisterFormComponent)
+    expect(comp).toBeTruthy();
   });
 });
