@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome 81.0.4044 (Windows 10.0.0)" package="" timestamp="2020-04-23T15:47:54" id="0" hostname="LAPTOP-D1I2UJ7J" tests="17" errors="0" failures="0" time="0.505">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36"/>
+  </properties>
+  <testcase name="MainOptionsComponent should create" time="0.1" classname="Chrome_81_0_4044_(Windows_10_0_0).MainOptionsComponent"/>
+  <testcase name="HealthDetailComponent should create" time="0.053" classname="Chrome_81_0_4044_(Windows_10_0_0).HealthDetailComponent"/>
+  <testcase name="NotFoundComponent should create" time="0.018" classname="Chrome_81_0_4044_(Windows_10_0_0).NotFoundComponent"/>
+  <testcase name="AppComponent should create the app" time="0.015" classname="Chrome_81_0_4044_(Windows_10_0_0).AppComponent"/>
+  <testcase name="AppComponent should have as title 'co-op19'" time="0.015" classname="Chrome_81_0_4044_(Windows_10_0_0).AppComponent"/>
+  <testcase name="RegisterFormComponent should create" time="0.07" classname="Chrome_81_0_4044_(Windows_10_0_0).RegisterFormComponent"/>
+  <testcase name="NavBarComponent should create" time="0.016" classname="Chrome_81_0_4044_(Windows_10_0_0).NavBarComponent"/>
+  <testcase name="MainComponent should create" time="0.015" classname="Chrome_81_0_4044_(Windows_10_0_0).MainComponent"/>
+  <testcase name="UserLoginComponent should create" time="0.029" classname="Chrome_81_0_4044_(Windows_10_0_0).UserLoginComponent"/>
+  <testcase name="UserService should be created" time="0.004" classname="Chrome_81_0_4044_(Windows_10_0_0).UserService"/>
+  <testcase name="ResourceService should be created" time="0.007" classname="Chrome_81_0_4044_(Windows_10_0_0).ResourceService"/>
+  <testcase name="RegisterComponent should create" time="0.011" classname="Chrome_81_0_4044_(Windows_10_0_0).RegisterComponent"/>
+  <testcase name="AddResourceComponent should create" time="0.017" classname="Chrome_81_0_4044_(Windows_10_0_0).AddResourceComponent"/>
+  <testcase name="ResourceFormService should be created" time="0.005" classname="Chrome_81_0_4044_(Windows_10_0_0).ResourceFormService"/>
+  <testcase name="AddResourceTypeComponent should create" time="0.016" classname="Chrome_81_0_4044_(Windows_10_0_0).AddResourceTypeComponent"/>
+  <testcase name="AddResourceFormComponent should create" time="0.091" classname="Chrome_81_0_4044_(Windows_10_0_0).AddResourceFormComponent"/>
+  <testcase name="MainTablesComponent should create" time="0.023" classname="Chrome_81_0_4044_(Windows_10_0_0).MainTablesComponent"/>
+  <system-out>
+    <![CDATA[Chrome 81.0.4044 (Windows 10.0.0) WARN: ''app-nav-bar' is not a known element:
+1. If 'app-nav-bar' is an Angular component, then verify that it is part of this module.
+2. If 'app-nav-bar' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.'
+,Chrome 81.0.4044 (Windows 10.0.0) WARN: ''router-outlet' is not a known element:
+1. If 'router-outlet' is an Angular component, then verify that it is part of this module.
+2. If 'router-outlet' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.'
+,Chrome 81.0.4044 (Windows 10.0.0) WARN: ''app-nav-bar' is not a known element:
+1. If 'app-nav-bar' is an Angular component, then verify that it is part of this module.
+2. If 'app-nav-bar' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.'
+,Chrome 81.0.4044 (Windows 10.0.0) WARN: ''router-outlet' is not a known element:
+1. If 'router-outlet' is an Angular component, then verify that it is part of this module.
+2. If 'router-outlet' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.'
+,Chrome 81.0.4044 (Windows 10.0.0) WARN: ''app-main-options' is not a known element:
+1. If 'app-main-options' is an Angular component, then verify that it is part of this module.
+2. If 'app-main-options' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.'
+,Chrome 81.0.4044 (Windows 10.0.0) WARN: ''app-main-tables' is not a known element:
+1. If 'app-main-tables' is an Angular component, then verify that it is part of this module.
+2. If 'app-main-tables' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.'
+,Chrome 81.0.4044 (Windows 10.0.0) WARN: ''app-register-form' is not a known element:
+1. If 'app-register-form' is an Angular component, then verify that it is part of this module.
+2. If 'app-register-form' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.'
+,Chrome 81.0.4044 (Windows 10.0.0) WARN: ''app-add-resource-type' is not a known element:
+1. If 'app-add-resource-type' is an Angular component, then verify that it is part of this module.
+2. If 'app-add-resource-type' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.'
+,Chrome 81.0.4044 (Windows 10.0.0) WARN: ''app-add-resource-form' is not a known element:
+1. If 'app-add-resource-form' is an Angular component, then verify that it is part of this module.
+2. If 'app-add-resource-form' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.'
+
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>
