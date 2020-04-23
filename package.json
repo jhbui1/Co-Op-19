@@ -6,10 +6,9 @@
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "build-prod": "ng build --prod",
-    "test": "ng test",
+    "test": "ng test --code-coverage --browsers=Chrome --reporters=progress,junit",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "sonar": "sonar-scanner"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -42,6 +41,7 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "karma-junit-reporter": "^2.0.1",
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
