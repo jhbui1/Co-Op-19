@@ -28,7 +28,7 @@ export class HealthDetailComponent implements OnInit {
   }
 
   getRes() {
-    const id = <number|null>this.route.snapshot.paramMap.get('id');
+    const id = <number|null><unknown>this.route.snapshot.paramMap.get('id');
     this.resServ.getHealthResource(id)
       .subscribe((resp)=>{
         console.log(resp);

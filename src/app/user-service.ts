@@ -16,7 +16,8 @@ export class UserService {
 
   public loggedIn:boolean = false;
   private url = 'https://db-19.azurewebsites.net/users';
-
+  // private url = 'https://localhost:44382/users';
+  
   constructor(private http:HttpClient) {}
 
   async getUser(username:string) {
