@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders } from '@angular/common/http';
 
 import {HealthResource} from './interfaces/health-resource';
+import { HealthResourceTest } from './interfaces/health-resource-test';
 import {ConsumableResource} from './interfaces/consumable-resource';
 import {ShelterResource} from './interfaces/shelter-resource';
 
@@ -17,13 +18,13 @@ const httpOptions = {
 export class ResourceService {
 
   
-  private url = 'https://db-19.azurewebsites.net/'
-  // private url = 'http://localhost:44382/'
+  readonly url = 'https://db-19.azurewebsites.net/'
+  // readonly url = 'http://localhost:44382/'
 
-  private health_ctrl = 'HealthResources';
-  private health_srvc_ctrl = 'HealthRecourceService';
-  private consumable_ctrl = 'ConsumableResources';
-  private shelter_ctrl = 'ShelterResources';
+  readonly health_ctrl = 'HealthResources';
+  readonly health_srvc_ctrl = 'HealthRecourceService';
+  readonly consumable_ctrl = 'ConsumableResources';
+  readonly shelter_ctrl = 'ShelterResources';
 
 
   constructor(private http:HttpClient) { }
@@ -48,7 +49,7 @@ export class ResourceService {
 
   getHealthResources(gpsn:number,gpsw:number,radius?:number) {
     let radius_query = this.buildRadiusQuery(gpsn,gpsw,radius);
-    return this.http.get<HealthResource[]> (
+    return this.http.get<HealthResourceTest[]> (
       this.url+this.health_ctrl+radius_query,httpOptions);
   }
 

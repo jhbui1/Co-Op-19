@@ -1,13 +1,10 @@
 import { HealthService } from './health-service'
 
-export class HealthResource {
+export class HealthResourceTest {
     constructor (
         public id: number,
         public resourceId: number,
-        public serviceName: string,
-        public serviceDesc: string,
         public providesTests: boolean,
-        public estCost: number,
         public gpsn: number,
         public gpsw: number,
         public city: string,

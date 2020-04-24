@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { HealthResource } from '../interfaces/health-resource';
+import { HealthResourceTest } from '../interfaces/health-resource-test';
 import { HealthService } from '../interfaces/health-service';
 import { ResourceService } from '../resource.service';
 
@@ -16,8 +16,8 @@ export class HealthDetailComponent implements OnInit {
 
   id:number = -1;
   name:string ="";
-  healthResource : HealthResource[] = [];
-  healthServices : HealthService[] = [];
+  healthResource : HealthResourceTest[] = [];
+  healthServices : HealthService[] | null = [];
   constructor(
     private route:ActivatedRoute,
     private resServ:ResourceService

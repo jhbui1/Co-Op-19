@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ResourceService } from '../resource.service';
-import { HealthResource } from '../interfaces/health-resource';
+import { HealthResourceTest } from '../interfaces/health-resource-test';
 import { ShelterResource } from '../interfaces/shelter-resource';
 import { ConsumableResource } from '../interfaces/consumable-resource';
 
@@ -24,7 +24,7 @@ export class MainTablesComponent implements OnInit {
   gpsn: number = 0;
   gpsw: number = 0;
   zoom: number = 8;
-  healthResources : HealthResource[] = [];
+  healthResources : HealthResourceTest[] = [];
   shelterResources : ShelterResource[] = [];
   consumableResources : ConsumableResource[] = [];
   headElements = ['ID','Name', 'GPSN', 'GPSW', 'Estimated Cost'];

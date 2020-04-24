@@ -25,12 +25,12 @@ export class AddResourceFormComponent implements OnInit {
 
   constructor(
     public resourceForm: ResourceFormService,
-    private userServ: UserService,
-    private resourceServ: ResourceService
+    public userServ: UserService,
+    public resourceServ: ResourceService
   ) {}
-
-  gpsn: number = 0;
-  gpsw: number = 0;
+  added:boolean = false;
+  gpsn: number = -1000;
+  gpsw: number = -1000;
   zoom: number = 8;
   dbUpdateError : boolean = false;
   addCoords : boolean = false;
@@ -103,20 +103,26 @@ export class AddResourceFormComponent implements OnInit {
   onSubmit() {
     this.dbUpdateError=false;
     //check which form is active and post corresponding property
-    if(this.resourceForm.addConsumable && this.userServ.loggedIn) {
-      debugger;
-      this.resourceServ.addConsumableResource(this.consumable)
-        .then(()=>console.log("res added"))
-        .catch(()=>this.dbUpdateError=true);
-    } else if(this.resourceForm.addShelter) {
-      this.resourceServ.addShelterResource(this.shelter)
-        .then()
-        .catch(()=>this.dbUpdateError=true);
-    } else if(this.resourceForm.addHealth) {
-      this.resourceServ.addHealthResource(this.health)
-        .then()
-        .catch(()=>this.dbUpdateError=true);
-    } 
+    if(this.userServ.loggedIn){
+      if(this.resourceForm.addConsumable) {
+        this.added=true;
+        this.resourceServ.addConsumableResource(this.consumable)
+          .then(()=>console.log("res added"))
+          .catch(()=>this.dbUpdateError=true);
+      } else if(this.resourceForm.addShelter) {
+        this.added=true;
+        this.resourceServ.addShelterResource(this.shelter)
+          .then()
+          .catch(()=>this.dbUpdateError=true);
+      } else if(this.resourceForm.addHealth) {
+        this.added=true;
+        this.resourceServ.addHealthResource(this.health)
+          .then()
+          .catch(()=>this.dbUpdateError=true);
+      } 
+    }else {
+
+    }
   }
 
   
