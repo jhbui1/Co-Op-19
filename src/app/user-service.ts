@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders } from '@angular/common/http';
 
 import {User} from './interfaces/user';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,8 +16,8 @@ const httpOptions = {
 export class UserService {
 
   public loggedIn:boolean = false;
-  private url = 'https://db-19.azurewebsites.net/users';
-  // private url = 'https://localhost:44382/users';
+  readonly url:string = environment.dbURL+"/users";
+  
   
   constructor(private http:HttpClient) {}
 

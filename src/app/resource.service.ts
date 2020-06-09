@@ -5,6 +5,7 @@ import {HealthResource} from './interfaces/health-resource';
 import { HealthResourceTest } from './interfaces/health-resource-test';
 import {ConsumableResource} from './interfaces/consumable-resource';
 import {ShelterResource} from './interfaces/shelter-resource';
+import { environment } from 'src/environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,8 +19,7 @@ const httpOptions = {
 export class ResourceService {
 
   
-  readonly url = 'https://db-19.azurewebsites.net/'
-  // readonly url = 'http://localhost:44382/'
+  readonly url = environment.dbURL;
 
   readonly health_ctrl = 'HealthResources';
   readonly health_srvc_ctrl = 'HealthRecourceService';

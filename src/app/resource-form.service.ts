@@ -15,6 +15,7 @@ export class ResourceFormService {
 
     this.addConsumable=true;
   }
+  
   AddShelter() {
     this.addHealth=false;
     this.addConsumable=false;
