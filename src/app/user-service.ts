@@ -27,7 +27,7 @@ export class UserService {
   }
 
   async addUser(user:User) {
-    console.log(user);
+    console.log(JSON.stringify(user));
     return this.http.post<User> (
       this.url,JSON.stringify(user),httpOptions).toPromise();
   }

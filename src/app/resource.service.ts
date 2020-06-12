@@ -21,10 +21,10 @@ export class ResourceService {
   
   readonly url = environment.dbURL;
 
-  readonly health_ctrl = 'HealthResources';
-  readonly health_srvc_ctrl = 'HealthRecourceService';
-  readonly consumable_ctrl = 'ConsumableResources';
-  readonly shelter_ctrl = 'ShelterResources';
+  readonly health_ctrl = '/HealthResources';
+  readonly health_srvc_ctrl = '/HealthRecourceService';
+  readonly consumable_ctrl = '/ConsumableResource';
+  readonly shelter_ctrl = '/ShelterResources';
 
 
   constructor(private http:HttpClient) { }

@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
+import { NgwWowService } from 'ngx-wow';
+import { filter } from 'rxjs/operators';
+
 import { ResourceService } from '../resource.service';
 import { HealthResourceTest } from '../interfaces/health-resource-test';
 import { ShelterResource } from '../interfaces/shelter-resource';
 import { ConsumableResource } from '../interfaces/consumable-resource';
+import { Subscription } from 'rxjs';
+import { Router, NavigationEnd } from '@angular/router';
 
 interface marker {
   lat: number;
@@ -31,7 +36,12 @@ export class MainTablesComponent implements OnInit {
   consumableHeadElements = ['ID','Name','Price','Quantity', 'GPSN', 'GPSW',];
   shelterHeadElements = ['ID','Name','Vacancy','Rating', 'GPSN', 'GPSW',];
 
-  constructor(private ResourceService:ResourceService) { }
+  private wowSubscription: Subscription;
+
+  constructor(
+    private resourceService: ResourceService,
+    private wowService: NgwWowService
+    ) { }
 
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`)
@@ -58,19 +68,19 @@ export class MainTablesComponent implements OnInit {
   }
 
   getHealthResources() {
-    this.ResourceService.getHealthResources(this.gpsn,this.gpsw,this.searchRadius).subscribe(
+    this.resourceService.getHealthResources(this.gpsn,this.gpsw,this.searchRadius).subscribe(
         resp=>{this.healthResources=resp;console.log(this.healthResources)}
       );
   }
 
   getConsumableResources() {
-    this.ResourceService.getConsumableResources(this.gpsn,this.gpsw,this.searchRadius).subscribe(
+    this.resourceService.getConsumableResources(this.gpsn,this.gpsw,this.searchRadius).subscribe(
       resp=>{this.consumableResources=resp;}
     );
   }
   
   getShelterResources() {
-    this.ResourceService.getShelterResources(this.gpsn,this.gpsw,this.searchRadius).subscribe(
+    this.resourceService.getShelterResources(this.gpsn,this.gpsw,this.searchRadius).subscribe(
       resp=>{this.shelterResources=resp;}
     );
   }
@@ -91,6 +101,7 @@ export class MainTablesComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getLocation();
+    this.wowService.init();
    
   }
 

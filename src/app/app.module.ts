@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 
+import { NgwWowModule } from 'ngx-wow';
+
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MainOptionsComponent } from './main-options/main-options.component';
@@ -21,6 +23,7 @@ import { ResourceFormService } from './resource-form.service';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HealthDetailComponent } from './health-detail/health-detail.component';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -43,8 +46,9 @@ import { HealthDetailComponent } from './health-detail/health-detail.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgwWowModule,
     AgmCoreModule.forRoot({
-      apiKey: "AIzaSyCeLNL3HeR4ZD5oTpkecPFdmA-qpsRVe74" 
+      apiKey: environment.gmapsAPIKey 
     })
   ],
   providers: [

@@ -22,13 +22,11 @@ export class UserLoginComponent implements OnInit {
   onSubmit() {
     this.userService.getUser(this.uname)
         .then(resp=> {
-          debugger; 
           if(resp[0].password.trim()==this.pwd){
             this.userService.loggedIn=true;
             this.router.navigate(['/main']);
           } else {
             this.logInError = true;
-            // this.router.navigate(['/main']);
           }
         })
         .catch((err)=>{

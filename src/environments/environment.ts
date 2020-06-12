@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  dbURL: "https://localhost:44382"
+  dbURL: "https://localhost:44374",
+  // dbURL: "https://db-19.azurewebsites.net/users",
+  gmapsAPIKey:"AIzaSyBkRSOY2duvr0avMsNTsoJFPVaZFbUBxyU"
 
 };
 

@@ -1,7 +1,8 @@
 #main-options-content {
     height: 100vh;
-    background: url('https://drive.google.com/uc?export=download&id=1BflFruzTGsN3K80DOf4--29p5-yrjAoC') no-repeat center;
+    background: url('https://i.pinimg.com/originals/60/49/bb/6049bb988265bbaa195e46b42a298819.jpg') no-repeat center;
     background-size: 100vw 100vh;
+    background-attachment: fixed;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -10,10 +11,23 @@
 
 #main-options-selectors {
     width: 80vw;
+    height:100vh;
     display: flex;
     flex-direction: row;
+    animation: push 2s 1;
+    animation-fill-mode: forwards;
     justify-content: space-between;
 }
+
+@keyframes push {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(35vh);
+    }
+}
+
 
 .select {
     color: white;
@@ -24,9 +38,11 @@
     padding:8vw;
     width: 15vw;
     height: 15vh;
+
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     text-align:center;
     font-weight:bold;
     font-size: 2vh;

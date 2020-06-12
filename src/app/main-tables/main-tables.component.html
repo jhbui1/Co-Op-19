@@ -35,6 +35,7 @@
     [(ngModel)]="searchRadius" #radius="ngModel">
     <button class="btn btn-success" (click)="resetTables()">Update Search Radius</button>
     
+
     <h3 class="table-headers">HEALTH RESOURCES</h3>
     <table class="table table-hover table-dark">
         <thead>
@@ -52,25 +53,27 @@
           </tr>
         </tbody>
     </table> 
-    
-    <h3 class="table-headers">CONSUMABLE RESOURCES</h3>
-    <table class="table table-hover table-dark">
-      <thead  >
-        <tr>
-          <th *ngFor="let head of consumableHeadElements" scope="col">{{head}} </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let el of consumableResources">
-          <th scope="row">{{el.id}}</th>
-          <td>{{el.name}}</td>
-          <td>{{el.price}}</td>
-          <td>{{el.quantity}}</td>
-          <td>{{el.gpsn}}</td>
-          <td>{{el.gpsw}}</td>
-        </tr>
-      </tbody>
-  </table>
+    <div class="wow slideInRight" data-wow-duration="3s" >
+      <h3 class="table-headers">CONSUMABLE RESOURCES</h3>
+      <table class="table table-hover table-dark">
+        <thead  >
+          <tr>
+            <th *ngFor="let head of consumableHeadElements" scope="col">{{head}} </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let el of consumableResources">
+            <th scope="row">{{el.id}}</th>
+            <td>{{el.name}}</td>
+            <td>{{el.price}}</td>
+            <td>{{el.quantity}}</td>
+            <td>{{el.gpsn}}</td>
+            <td>{{el.gpsw}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   <h3 class="table-headers">SHELTER RESOURCES</h3>
   <table class="table table-hover table-dark">
     <thead>
