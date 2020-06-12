@@ -24,6 +24,7 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HealthDetailComponent } from './health-detail/health-detail.component';
 import { environment } from 'src/environments/environment';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { environment } from 'src/environments/environment';
     AddResourceFormComponent,
     UserLoginComponent,
     NotFoundComponent,
-    HealthDetailComponent
+    HealthDetailComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,

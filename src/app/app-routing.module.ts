@@ -6,6 +6,7 @@ import { AddResourceComponent } from './add-resource/add-resource.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HealthDetailComponent } from './health-detail/health-detail.component';
+import { TableComponent } from './table/table.component';
 
 const routes:Routes = [
   { path: '',redirectTo: 'main', pathMatch: 'full' },
@@ -14,11 +15,12 @@ const routes:Routes = [
   { path: 'main', component: MainComponent},
   { path: 'login', component: UserLoginComponent},
   { path: 'health-detail/:id', component: HealthDetailComponent },
+  { path: 'table/:type', component: TableComponent },
   { path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{scrollPositionRestoration: 'enabled'} )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

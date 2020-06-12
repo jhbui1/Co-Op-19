@@ -1,0 +1,107 @@
+
+<div class="tables" id="tables-top">
+    <agm-map 
+    [latitude]="gpsn"
+    [longitude]="gpsw"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="false"
+    (mapClick)="mapClicked($event)">
+
+    <agm-marker 
+        *ngFor="let m of markers; let i = index"
+        (markerClick)="clickedMarker(m.label, i)"
+        [latitude]="m.gpsn"
+        [longitude]="m.gpsw"
+        [label]="m.label"
+        [markerDraggable]="m.draggable"
+        (dragEnd)="markerDragEnd(m, $event)">
+        
+      <agm-info-window>
+        <strong>InfoWindow content</strong>
+      </agm-info-window>
+      
+    </agm-marker>
+    
+    <agm-circle [latitude]="gpsn + 0.3" [longitude]="gpsw" 
+        [radius]="5000"
+        [fillColor]="'red'"
+        [circleDraggable]="true"
+        [editable]="true">
+    </agm-circle>
+
+    </agm-map>  
+    <input type="number" placeholder="Search Radius" id="radius" name="radius" class="form-control"
+    required customMin="0"
+    [(ngModel)]="searchRadius" #radius="ngModel">
+    <button class="btn btn-success" (click)="resetTables()">Update Search Radius</button>
+</div>
+
+<div id="center-parallax">
+  <p>IN THESE TRYING TIMES -<br/> lorem ipsum <3</p>
+</div>
+
+<div class="tables" id="tables-bottom">
+  <div class="wow slideInUp table-content" data-wow-duration="2s" *ngIf="this.model_type==='health'">
+    <h3>HEALTH RESOURCES</h3>
+    <table class="table table-hover table-dark">
+        <thead>
+          <tr>
+            <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let el of healthResources" routerLink="/health-detail/{{el.id}}" class="wow slideInUp" data-wow-duration="2s" data-wow-delay="1s">
+            <th scope="row">{{el.id}}</th>
+            <td>{{el.name}}</td>
+            <td>{{el.gpsn}}</td>
+            <td>{{el.gpsw}}</td>
+            <td>{{el.testPrice}}</td>
+          </tr>
+        </tbody>
+    </table> 
+  </div>
+  <div class="table-content" data-wow-duration="2s" *ngIf="this.model_type==='consumables'">
+    <h3>CONSUMABLE RESOURCES</h3>
+    <table class="table table-hover table-dark wow slideInUp" data-wow-duration="2s" >
+      <thead  >
+        <tr>
+          <th *ngFor="let head of consumableHeadElements" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody class="wow slideInUp" data-wow-duration="2s">
+        <tr *ngFor="let el of consumableResources;let i of index" class="wow slideInUp" data-wow-duration="2s" data-wow-delay="i*2s" >
+          <th scope="row">{{el.id}}</th>
+          <td>{{el.name}}</td>
+          <td>{{el.price}}</td>
+          <td>{{el.quantity}}</td>
+          <td>{{el.gpsn}}</td>
+          <td>{{el.gpsw}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="wow slideInUp table-content" data-wow-duration="2s" *ngIf="this.model_type==='shelter'">
+    <h3>SHELTER RESOURCES</h3>
+    <table class="table table-hover table-dark">
+      <thead>
+        <tr>
+          <th *ngFor="let head of shelterHeadElements" scope="col">{{head}} </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let el of shelterResources" class="wow slideInUp">
+          <th scope="row">{{el.id}}</th>
+          <td>{{el.name}}</td>
+          <td>{{el.vacancy}}</td>
+          <td>{{el.rating}}</td>
+          <td>{{el.gpsn}}</td>
+          <td>{{el.gpsw}}</td>
+        </tr>
+      </tbody>
+    </table>   
+  </div>  
+</div>  
+
+   
+

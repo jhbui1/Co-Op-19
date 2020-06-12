@@ -46,7 +46,6 @@ export class AddResourceTypeComponent implements OnInit {
       this.resourceForm.AddConsumable();
       this.scrollToResForm();
     }
-
   }
   
   addShelter() {

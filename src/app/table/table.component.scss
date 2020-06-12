@@ -1,0 +1,71 @@
+.table-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tables {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+#center-parallax {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+
+    p{
+        font-size: 8vh;
+    }
+
+    background-image: url("src/assets/images/table-intermed-bg.jpg");
+    background-size: 92% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    height: 55vh;   
+} 
+
+#tables-top {
+    background: #E6DADA;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #274046, #E6DADA);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #274046, #E6DADA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#tables-bottom {
+    background: #E6DADA;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #274046, #E6DADA);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #274046, #E6DADA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+agm-map {
+    height: 35vh;
+    width: 35vw;
+    margin-bottom:3vh;
+}
+
+input {
+    width: 20vw;
+    margin-bottom: 1vh;
+}
+
+table {
+    margin-bottom: 1vh;
+    width: 75vw;
+}
+
+.table-headers, table {
+    color: black;
+    background-color: rgba(255,255,255,.2);
+}
+
+.table-headers {
+    margin-bottom: 0;
+}
+

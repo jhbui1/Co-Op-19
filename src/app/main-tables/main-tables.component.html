@@ -1,96 +1,14 @@
 <div id="tables">
-    <agm-map 
-    [latitude]="gpsn"
-    [longitude]="gpsw"
-    [zoom]="zoom"
-    [disableDefaultUI]="false"
-    [zoomControl]="false"
-    (mapClick)="mapClicked($event)">
-
-    <agm-marker 
-        *ngFor="let m of markers; let i = index"
-        (markerClick)="clickedMarker(m.label, i)"
-        [latitude]="m.gpsn"
-        [longitude]="m.gpsw"
-        [label]="m.label"
-        [markerDraggable]="m.draggable"
-        (dragEnd)="markerDragEnd(m, $event)">
-        
-      <agm-info-window>
-        <strong>InfoWindow content</strong>
-      </agm-info-window>
-      
-    </agm-marker>
-    
-    <agm-circle [latitude]="gpsn + 0.3" [longitude]="gpsw" 
-        [radius]="5000"
-        [fillColor]="'red'"
-        [circleDraggable]="true"
-        [editable]="true">
-    </agm-circle>
-
-    </agm-map>  
-    <input type="number" placeholder="Search Radius" id="radius" name="radius" class="form-control"
-    required customMin="0"
-    [(ngModel)]="searchRadius" #radius="ngModel">
-    <button class="btn btn-success" (click)="resetTables()">Update Search Radius</button>
-    
-
-    <h3 class="table-headers">HEALTH RESOURCES</h3>
-    <table class="table table-hover table-dark">
-        <thead>
-          <tr>
-            <th *ngFor="let head of headElements" scope="col">{{head}} </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let el of healthResources" routerLink="/health-detail/{{el.id}}">
-            <th scope="row">{{el.id}}</th>
-            <td>{{el.name}}</td>
-            <td>{{el.gpsn}}</td>
-            <td>{{el.gpsw}}</td>
-            <td>{{el.testPrice}}</td>
-          </tr>
-        </tbody>
-    </table> 
-    <div class="wow slideInRight" data-wow-duration="3s" >
-      <h3 class="table-headers">CONSUMABLE RESOURCES</h3>
-      <table class="table table-hover table-dark">
-        <thead  >
-          <tr>
-            <th *ngFor="let head of consumableHeadElements" scope="col">{{head}} </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let el of consumableResources">
-            <th scope="row">{{el.id}}</th>
-            <td>{{el.name}}</td>
-            <td>{{el.price}}</td>
-            <td>{{el.quantity}}</td>
-            <td>{{el.gpsn}}</td>
-            <td>{{el.gpsw}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-  <h3 class="table-headers">SHELTER RESOURCES</h3>
-  <table class="table table-hover table-dark">
-    <thead>
-      <tr>
-        <th *ngFor="let head of shelterHeadElements" scope="col">{{head}} </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let el of shelterResources">
-        <th scope="row">{{el.id}}</th>
-        <td>{{el.name}}</td>
-        <td>{{el.vacancy}}</td>
-        <td>{{el.rating}}</td>
-        <td>{{el.gpsn}}</td>
-        <td>{{el.gpsw}}</td>
-      </tr>
-    </tbody>
-</table>    
+       <nav id="table-selector">
+          <div class="select wow fadeInRight shelter" data-wow-duration="2s" routerLink="/table/shelter">
+            <p>SHELTER</p>
+          </div>
+          <div class="select wow fadeInLeft consumables" data-wow-duration="2s" routerLink="/table/consumables">
+            <p>CONSUMABLES (food/toileteries etc)</p>
+          </div>
+          <div class="select wow fadeInRight health" data-wow-duration="2s" routerLink="/table/health">
+            <p>HEALTHCARE</p>
+          </div>
+       </nav>
 </div>
 

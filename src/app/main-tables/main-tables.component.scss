@@ -5,28 +5,29 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
 }
 
-agm-map {
-    height: 35vh;
-    width: 35vw;
-    margin-bottom:3vh;
+
+p {
+    padding: 1vh 1vh;
+    background: rgba(0,0,0,.75);
 }
 
-input {
-    width: 20vw;
+.select {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
-table {
-    margin-bottom: 1vh;
-    width: 75vw;
+.consumables {
+    background-image: url("src/assets/images/main-tables-consumables-bg.jpg");
 }
 
-.table-headers, table {
-    background-color: rgba(255,255,255,.75);
+.shelter {
+    background-image: url("src/assets/images/main-tables-shelter-bg.png");
 }
 
-.table-headers {
-    margin-bottom: 0;
+.health {
+    background-image: url("src/assets/images/main-tables-health-bg.jpg");
 }
-
