@@ -25,7 +25,7 @@
     }
 
     background-image: url("src/assets/images/table-intermed-bg.jpg");
-    background-size: 92% 100%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
@@ -60,7 +60,7 @@ table {
     width: 75vw;
 }
 
-.table-headers, table {
+.table-headers, tr {
     color: black;
     background-color: rgba(255,255,255,.2);
 }
@@ -69,3 +69,7 @@ table {
     margin-bottom: 0;
 }
 
+tr {
+    opacity: 0;
+    animation-fill-mode: forwards;
+}

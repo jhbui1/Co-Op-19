@@ -51,7 +51,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let el of healthResources" routerLink="/health-detail/{{el.id}}" class="wow slideInUp" data-wow-duration="2s" data-wow-delay="1s">
+          <tr *ngFor="let el of healthResources;let i = index" routerLink="/health-detail/{{el.id}}" class="wow fadeInLeft" data-wow-duration="1s" [attr.data-wow-delay]="0.5*i+'s'">
             <th scope="row">{{el.id}}</th>
             <td>{{el.name}}</td>
             <td>{{el.gpsn}}</td>
@@ -61,16 +61,16 @@
         </tbody>
     </table> 
   </div>
-  <div class="table-content" data-wow-duration="2s" *ngIf="this.model_type==='consumables'">
+  <div class="table-content"  *ngIf="this.model_type==='consumables'">
     <h3>CONSUMABLE RESOURCES</h3>
-    <table class="table table-hover table-dark wow slideInUp" data-wow-duration="2s" >
-      <thead  >
+    <table class="table table-hover table-dark" >
+      <thead>
         <tr>
           <th *ngFor="let head of consumableHeadElements" scope="col">{{head}} </th>
         </tr>
       </thead>
-      <tbody class="wow slideInUp" data-wow-duration="2s">
-        <tr *ngFor="let el of consumableResources;let i of index" class="wow slideInUp" data-wow-duration="2s" data-wow-delay="i*2s" >
+      <tbody>
+        <tr *ngFor="let el of consumableResources; let i = index" class="wow fadeInLeft" data-wow-duration="1s" [attr.data-wow-delay]="0.5*i+'s'" >
           <th scope="row">{{el.id}}</th>
           <td>{{el.name}}</td>
           <td>{{el.price}}</td>
@@ -90,7 +90,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let el of shelterResources" class="wow slideInUp">
+        <tr *ngFor="let el of shelterResources; let i = index" class="wow fadeInLeft" data-wow-duration="1s" [attr.data-wow-delay]="0.5*i+'s'" >
           <th scope="row">{{el.id}}</th>
           <td>{{el.name}}</td>
           <td>{{el.vacancy}}</td>
