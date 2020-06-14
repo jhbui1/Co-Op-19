@@ -35,7 +35,11 @@
                 </div>
             </div>
     
-            <button type="submit" class="btn btn-success" (click)="onSubmit();" [disabled]="!userForm.valid">Login</button>
+            <button type="submit" class="btn btn-success" (click)="onSubmit()" [disabled]="!userForm.valid">Login</button>
+            <div>
+                <button *ngIf="!loggedIn" type="button" (click)="signInWithGoogle()" class="g-signin2 btn btn-primary">Sign In With Google</button>
+                <button *ngIf="loggedIn" type="button" (click)="signOut()" class="btn btn-primary">Sign Out</button>         
+            </div>
         </form>
     </div>
 </div>

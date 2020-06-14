@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GoogleMapsAPIWrapper } from '@agm/core';
 
 @Component({
   selector: 'app-nav-bar',

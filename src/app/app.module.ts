@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
 
 import { NgwWowModule } from 'ngx-wow';
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider, FacebookLoginProvider } from "angularx-social-login";
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -25,6 +27,17 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HealthDetailComponent } from './health-detail/health-detail.component';
 import { environment } from 'src/environments/environment';
 import { TableComponent } from './table/table.component';
+
+const config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider(environment.gSignInKey)
+  }
+
+]);
+export function provideConfig() {
+  return config;
+}
 
 @NgModule({
   declarations: [
@@ -51,13 +64,20 @@ import { TableComponent } from './table/table.component';
     NgwWowModule,
     AgmCoreModule.forRoot({
       apiKey: environment.gmapsAPIKey 
-    })
+    }),
+    SocialLoginModule,
+    ReactiveFormsModule
+
   ],
   providers: [
     UserService,
     ResourceService,
     ResourceFormService,
-    HttpClientModule
+    HttpClientModule,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
   ],
   bootstrap: [AppComponent]
 })
