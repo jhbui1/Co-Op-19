@@ -51,7 +51,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let el of healthResources;let i = index" routerLink="/health-detail/{{el.id}}" class="wow fadeInLeft" data-wow-duration="1s" [attr.data-wow-delay]="0.5*i+'s'">
+          <tr *ngFor="let el of healthResources;let i = index" routerLink="/health-detail/{{el.id}}" class="wow slideInUp" data-wow-duration="1s" [attr.data-wow-delay]="0.5*i+'s'">
             <th scope="row">{{el.id}}</th>
             <td>{{el.name}}</td>
             <td>{{el.gpsn}}</td>
@@ -70,7 +70,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let el of consumableResources; let i = index" class="wow fadeInLeft" data-wow-duration="1s" [attr.data-wow-delay]="0.5*i+'s'" >
+        <tr *ngFor="let el of consumableResources; let i = index" class="wow slideInUp" data-wow-duration="1s" [attr.data-wow-delay]="0.5*i+'s'" >
           <th scope="row">{{el.id}}</th>
           <td>{{el.name}}</td>
           <td>{{el.price}}</td>
@@ -90,7 +90,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let el of shelterResources; let i = index" class="wow fadeInLeft" data-wow-duration="1s" [attr.data-wow-delay]="0.5*i+'s'" >
+        <tr *ngFor="let el of shelterResources; let i = index" class="wow slideInUp" data-wow-duration="1s" [attr.data-wow-delay]="0.5*i+'s'" >
           <th scope="row">{{el.id}}</th>
           <td>{{el.name}}</td>
           <td>{{el.vacancy}}</td>

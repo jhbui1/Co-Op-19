@@ -43,6 +43,7 @@ export class UserLoginComponent implements OnInit {
   }
   signOut(): void {
     this.authService.signOut();
+    this.userService.loggedIn=false;
   }
   onSubmit() {
     this.userService.getUser(this.uname)
