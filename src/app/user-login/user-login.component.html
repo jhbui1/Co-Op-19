@@ -1,48 +1,49 @@
 <div id="user-login-container">
     <div id="user-login-content">
-        <h2>Login</h2>
+        <h2>Welcome back <br/> to Co-Op 19</h2>
         <form #userForm="ngForm">
 
-            <div *ngIf="logInError" class="alert alert-danger">
-                Username/Password combination is incorrect.
-            </div>
-
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" class="form-control"
-            required minlength="4" maxlength="30"
-            [(ngModel)]="uname" #username="ngModel" >
-            <div *ngIf="username.invalid && (username.dirty || username.touched)"
-            class="alert alert-danger">
-                <div *ngIf="username.errors?.required">
-                Name is required.
+            <div *ngIf="!this.userService.logInStatus">
+                <div *ngIf="logInError" class="alert alert-danger">
+                    Username/Password combination is incorrect.
                 </div>
-                <div *ngIf="username.errors?.minlength">
-                Name must be at least 4 characters long.
-                </div>
-            </div>
-
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control"
-            required minlength="4" maxlength="30"
-            [(ngModel)]="pwd" #password="ngModel" >
-            <div *ngIf="password.invalid && (password.dirty || password.touched)"
-            class="alert alert-danger">
-                <div *ngIf="password.errors?.required">
-                Password is required.
-                </div>
-                <div *ngIf="password.errors?.minlength">
-                Password must be at least 4 characters long.
-                </div>
-            </div>
     
-            <button type="submit" class="button primary-button" (click)="onSubmit()" [disabled]="!userForm.valid">Login</button>
-            <div>
-                <button *ngIf="!loggedIn" type="button" (click)="signInWithGoogle()" class="g-signin2 button secondary-button">Sign In With Google  
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" class="form-control"
+                required minlength="4" maxlength="30"
+                [(ngModel)]="uname" #username="ngModel" >
+                <div *ngIf="username.invalid && (username.dirty || username.touched)"
+                class="alert alert-danger">
+                    <div *ngIf="username.errors?.required">
+                    Name is required.
+                    </div>
+                    <div *ngIf="username.errors?.minlength">
+                    Name must be at least 4 characters long.
+                    </div>
+                </div>
+    
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control"
+                required minlength="4" maxlength="30"
+                [(ngModel)]="pwd" #password="ngModel" >
+                <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                class="alert alert-danger">
+                    <div *ngIf="password.errors?.required">
+                    Password is required.
+                    </div>
+                    <div *ngIf="password.errors?.minlength">
+                    Password must be at least 4 characters long.
+                    </div>
+                </div>
+                <button  type="submit" class="button primary-button" (click)="onSubmit()" [disabled]="!userForm.valid">Login</button>
+                <button  type="button" (click)="signInWithGoogle()" class="g-signin2 button secondary-button">Sign In With Google  
                     <img src="assets/images/table-google-logo.png"></button>
-                <button *ngIf="loggedIn" type="button" (click)="signOut()" class="secondary-button">Sign Out  
-                    <img src="assets/images/table-google-logo.png"></button>         
-               
+                  
             </div>
+            <div *ngIf="this.userService.logInStatus">
+                <button type="submit" class="button primary-button" (click)="signOut()" [disabled]="!userForm.valid">Logout</button>
+            </div>
+           
         </form>
     </div>
 </div>

@@ -10,10 +10,14 @@ import { UserService } from '../user-service';
 })
 export class RegisterFormComponent implements OnInit {
   
-  user:User = this.resetUser();
-  submitted = false;
-  dbUpdateError = false;
+  user:User             = this.resetUser();
+  submitted:boolean     = false;
+  dbUpdateError:boolean = false;
 
+  /**
+   * Sets user's current position for storage in database
+   * @param pos Position object containing user's current coordinates
+   */
   setUserPos(pos:Position) {
     this.user.gpsn = pos.coords.latitude;
     this.user.gpsw = pos.coords.longitude;
@@ -28,14 +32,14 @@ export class RegisterFormComponent implements OnInit {
   }
   
   resetUser() : User {
-    let new_user = new User(0,"","","","",0,"",0,0);
+    let new_user = new User();
     this.getLocation();
     return new_user;
   }
 
   onSubmit() {
     this.dbUpdateError = false;
-    this.userService.addUser(this.user)
+    this.userService.addUser(this.user,this.userService.isAdmin)
       .then()
       .catch(()=>this.dbUpdateError=true);
     this.user=this.resetUser();
@@ -43,7 +47,7 @@ export class RegisterFormComponent implements OnInit {
   }
 
   constructor(
-    private userService : UserService
+    public userService : UserService
   ) { }
 
   ngOnInit(): void {

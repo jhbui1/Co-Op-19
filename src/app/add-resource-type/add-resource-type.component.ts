@@ -21,7 +21,7 @@ export class AddResourceTypeComponent implements OnInit {
   }
 
   checkLogin() {
-    if(!this.userService.loggedIn) {
+    if(!this.userService.logInStatus) {
       this.logInError=true;
       return false;
     }

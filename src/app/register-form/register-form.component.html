@@ -73,6 +73,12 @@
         required minlength="4" maxlength="30"
         [(ngModel)]="user.Phone" #phone="ngModel" >
 
+        <div *ngIf="this.userService.logInStatus && this.userService.isAdmin">
+            <label for="admin">Admin?</label>
+            <input type="checkbox" id="admin" name="admin" class="form-control"
+            [(ngModel)]="user.isAdmin" #admin="ngModel" [checked]=user.isAdmin>
+        </div>
+  
         <button type="submit" class="btn btn-success" (click)="onSubmit();userForm.resetForm()" [disabled]="!userForm.valid">Submit</button>
     </form>
 </div>

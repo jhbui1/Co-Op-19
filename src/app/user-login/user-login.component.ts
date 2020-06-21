@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService, FacebookLoginProvider,GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import { AuthService,GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 import { UserService } from '../user-service';
 
 @Component({
@@ -10,16 +10,17 @@ import { UserService } from '../user-service';
   styleUrls: ['./user-login.component.scss']
 })
 export class UserLoginComponent implements OnInit {
+  @Output() updateNav = new EventEmitter();
   signinForm: FormGroup;
   user: SocialUser;
-  loggedIn: boolean;  
-  uname:string = "";
-  pwd:string = "";
+  uname: string = "";
+  pwd: string = "";
   logInError:boolean = false;
+
   constructor(
     private fb: FormBuilder, 
     private authService: AuthService,
-    private userService:UserService,
+    public  userService: UserService,
     private router:Router
     ) { }  
   ngOnInit() {
@@ -28,28 +29,42 @@ export class UserLoginComponent implements OnInit {
       password: ['', Validators.required]
     });    this.authService.authState.subscribe((user) => {
       this.user = user;
-      this.loggedIn = (user != null);
       console.log(this.user);
     });
     
   }  
-
+  /**
+   * Sign in with google, does not allow admin access
+   */
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
-    .then( (resp) => {
-      this.userService.loggedIn=true;
+    .then( () => {
+      this.userService.signIn("Google");
+      this.updateNav.emit(null);
+      this.router.navigate(['/main']);
     })
-    .catch();
+    .catch(
+      () => this.logInError = true
+    );
   }
+
+ 
   signOut(): void {
     this.authService.signOut();
-    this.userService.loggedIn=false;
+    this.userService.signOut();
   }
+  /**
+   * Sign in with in house login, possibly an admin
+   * Redirects to main page upon success
+   */
   onSubmit() {
-    this.userService.getUser(this.uname)
+    this.userService.verifyUser(this.uname,this.pwd)
         .then(resp=> {
-          if(resp[0].password.trim()==this.pwd){
-            this.userService.loggedIn=true;
+          console.log(resp)
+          if(resp.length>0){
+            console.log(resp);
+            this.userService.populateUser(resp[0]);
+            this.updateNav.emit(null);
             this.router.navigate(['/main']);
           } else {
             this.logInError = true;

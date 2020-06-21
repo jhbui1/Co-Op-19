@@ -103,7 +103,7 @@ export class AddResourceFormComponent implements OnInit {
   onSubmit() {
     this.dbUpdateError=false;
     //check which form is active and post corresponding property
-    if(this.userServ.loggedIn){
+    if(this.userServ.logInStatus){
       if(this.resourceForm.addConsumable) {
         this.added=true;
         this.resourceServ.addConsumableResource(this.consumable)

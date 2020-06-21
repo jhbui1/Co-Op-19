@@ -6,8 +6,9 @@ import { HealthResourceTest } from './interfaces/health-resource-test';
 import {ConsumableResource} from './interfaces/consumable-resource';
 import {ShelterResource} from './interfaces/shelter-resource';
 import { environment } from 'src/environments/environment';
+import { UserService } from './user-service';
 
-const httpOptions = {
+let httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
   })
@@ -27,7 +28,30 @@ export class ResourceService {
   readonly shelter_ctrl = '/ShelterResources';
 
 
-  constructor(private http:HttpClient) { }
+  constructor(
+    private http:HttpClient,
+    private userService: UserService
+    ) { 
+      if(this.userService.type=="Basic") {
+        
+        let authorizationData = 'Basic ' + btoa(userService.User.Email + ':' + userService.User.password);
+
+        httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type':  'application/json',
+                'Authorization': authorizationData
+            })
+        };
+      } else {
+        let authorizationData = 'Google ' + userService.getAuthToken();
+        httpOptions = {
+          headers: new HttpHeaders({
+              'Content-Type':  'application/json',
+              'Authorization': authorizationData
+          })
+      };
+      }
+    }
 
  
 
