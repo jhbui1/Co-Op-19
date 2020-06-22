@@ -7,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
+  async canDeactivate() {
+    window.scrollTo({left:0,top:0,behavior: 'auto'});
+    async function delay(ms: number) {
+      return new Promise( resolve => setTimeout(resolve, ms) );
+    }
+    await delay(100);
+    return true;
+  }
+
   constructor() { }
 
   ngOnInit(): void {

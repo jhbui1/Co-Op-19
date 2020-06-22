@@ -27,6 +27,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HealthDetailComponent } from './health-detail/health-detail.component';
 import { environment } from 'src/environments/environment';
 import { TableComponent } from './table/table.component';
+import { DeactivateGuard } from './deactivate-guard';
 
 const config = new AuthServiceConfig([
   {
@@ -74,6 +75,7 @@ export function provideConfig() {
     ResourceService,
     ResourceFormService,
     HttpClientModule,
+    DeactivateGuard,
     {
       provide: AuthServiceConfig,
       useFactory: provideConfig

@@ -31,29 +31,31 @@ export class ResourceService {
   constructor(
     private http:HttpClient,
     private userService: UserService
-    ) { 
-      if(this.userService.type=="Basic") {
-        
-        let authorizationData = 'Basic ' + btoa(userService.User.Email + ':' + userService.User.password);
+    ) { }
 
-        httpOptions = {
-            headers: new HttpHeaders({
-                'Content-Type':  'application/json',
-                'Authorization': authorizationData
-            })
-        };
-      } else {
-        let authorizationData = 'Google ' + userService.getAuthToken();
-        httpOptions = {
+  //Updates header based on type of user logged in - either google or basic
+  updateHeader() {
+    debugger;
+    if(this.userService.type=="Basic") {
+        
+      let authorizationData = 'Basic ' + btoa(this.userService.User.Email + ':' + this.userService.User.password);
+
+      httpOptions = {
           headers: new HttpHeaders({
               'Content-Type':  'application/json',
               'Authorization': authorizationData
           })
       };
-      }
+    } else {
+        let authorizationData = 'Google ' + this.userService.User;
+        httpOptions = {
+          headers: new HttpHeaders({
+              'Content-Type':  'application/json',
+              'Authorization': authorizationData
+          })
+        }
     }
-
- 
+  }
 
   buildRadiusQuery(gpsn:number,gpsw:number,radius?:number): string {
     let res: string = `/${gpsn}/${gpsw}/`;
@@ -78,12 +80,14 @@ export class ResourceService {
   }
 
   addHealthResource(res:HealthResource) {
+    this.updateHeader();
     console.log(JSON.stringify(res));
     return this.http.post<HealthResource>(this.url+this.health_ctrl,JSON.stringify(res),httpOptions)
             .toPromise();
   }
 
   addHealthService(res:HealthResource) {
+    this.updateHeader();
     console.log(JSON.stringify(res));
     return this.http.post<HealthResource>(this.url+this.health_srvc_ctrl,JSON.stringify(res),httpOptions)
       .toPromise();
@@ -97,6 +101,7 @@ export class ResourceService {
   }
 
   addConsumableResource(consumable: ConsumableResource) {
+    this.updateHeader();
     console.log(JSON.stringify(consumable));
     return this.http.post<ConsumableResource>(this.url+this.consumable_ctrl,JSON.stringify(consumable),httpOptions)
       .toPromise();
@@ -109,6 +114,7 @@ export class ResourceService {
   }
 
   addShelterResource(shelter: ShelterResource) {
+    this.updateHeader();
     return this.http.post<ShelterResource>(this.url+this.shelter_ctrl,JSON.stringify(shelter),httpOptions)
       .toPromise();
   }

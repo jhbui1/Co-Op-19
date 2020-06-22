@@ -34,6 +34,11 @@ export class TableComponent implements OnInit {
 
   model_type: string;
 
+  canDeactivate() {
+    window.scrollTo(0,0);
+    return true;
+  }
+
   constructor(
     private resourceService: ResourceService,
     private wowService: NgwWowService,

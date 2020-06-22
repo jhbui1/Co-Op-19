@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddResourceComponent implements OnInit {
 
+  canDeactivate() {
+    window.scrollTo(0,0);
+    return true;
+  }
+
   constructor() { }
 
   ngOnInit(): void {

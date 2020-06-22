@@ -64,9 +64,7 @@ export class UserService {
   }
 
   getAuthToken() {
-    this.authService.authState.subscribe((user) => {
-      return user;
-    });
+    return this.authService.authState.toPromise();
   }
 
   populateUser(user:User) {
