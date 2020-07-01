@@ -47,7 +47,7 @@ export class ResourceService {
           })
       };
     } else {
-        let authorizationData = 'Google ' + this.userService.User;
+        let authorizationData = 'Google ' + JSON.stringify(this.userService.SocialUser);
         httpOptions = {
           headers: new HttpHeaders({
               'Content-Type':  'application/json',
@@ -102,7 +102,7 @@ export class ResourceService {
 
   addConsumableResource(consumable: ConsumableResource) {
     this.updateHeader();
-    console.log(JSON.stringify(consumable));
+    console.log(httpOptions);
     return this.http.post<ConsumableResource>(this.url+this.consumable_ctrl,JSON.stringify(consumable),httpOptions)
       .toPromise();
   }

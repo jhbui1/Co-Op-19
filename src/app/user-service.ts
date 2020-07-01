@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders } from '@angular/common/http';
 
 import {User} from './interfaces/user';
 import { environment } from 'src/environments/environment';
-import { AuthService } from 'angularx-social-login';
+import { AuthService, SocialUser } from 'angularx-social-login';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,7 +18,8 @@ export class UserService {
 
   private loggedIn: boolean = false;
   private readonly url:string = environment.dbURL+"/users";
-  private user: User; 
+  private user: User;
+  private socialUser: SocialUser; 
   private userType: string;
   
   
@@ -52,11 +53,16 @@ export class UserService {
     return this.loggedIn;
   }
   get isAdmin(){
-    return this.user ? this.user.isAdmin : false ;
+    let thisUser = this.user as User;
+    return this.user ? thisUser.isAdmin : false ;
   }
 
   get User() {
     return this.user;
+  }
+
+  set SocialUser(user:SocialUser) {
+    this.socialUser=user;
   }
 
   get type(){
@@ -74,6 +80,8 @@ export class UserService {
   }
 
   signIn(type:string) {
+    this.authService.authState.toPromise()
+      .then((user)=>this.socialUser = user);
     this.loggedIn = true;
     this.userType = type;
   }

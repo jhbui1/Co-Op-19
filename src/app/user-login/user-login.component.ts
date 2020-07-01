@@ -27,8 +27,10 @@ export class UserLoginComponent implements OnInit {
     this.signinForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
-    });    this.authService.authState.subscribe((user) => {
+    });    
+    this.authService.authState.subscribe((user) => {
       this.user = user;
+      this.userService.SocialUser=user;
       console.log(this.user);
     });
     
