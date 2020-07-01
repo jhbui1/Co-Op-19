@@ -64,7 +64,10 @@ export class UserService {
   set SocialUser(user:SocialUser) {
     this.socialUser=user;
   }
-
+  get SocialUser():SocialUser 
+  {
+    return this.socialUser
+  }
   get type(){
     return this.userType;
   }

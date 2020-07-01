@@ -47,7 +47,9 @@ export class ResourceService {
           })
       };
     } else {
-        let authorizationData = 'Google ' + JSON.stringify(this.userService.SocialUser);
+        let authorizationData = 'Google ' + this.userService.SocialUser.idToken;
+    
+        debugger;
         httpOptions = {
           headers: new HttpHeaders({
               'Content-Type':  'application/json',
